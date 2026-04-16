@@ -32,6 +32,10 @@ const login = handleLogin(4, "farmer_shara", "iLoveFarming");
 function logOut() {
     const confirmLogout = confirm("Are you sure you want to log out?");
     if(confirmLogout) {
-        
+        localStorage.removeItem("isLoggedIn"); //clears login state
+    alert("You have been logged out.");
+    window.location.href = "login.html";// redirects back to login page
+    } else {
+        alert("Logout Cancelled.")
     }
 }
