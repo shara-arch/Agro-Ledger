@@ -87,6 +87,15 @@ async function loadOverview () {
     document.getElementById("supplyItemsValue").textContent = supplyItems;
     document.getElementById("lowStockValue").textContent = lowStockAlerts;
     document.getElementById("upcomingHarvestsValue").textContent = upcomingHarvests;
-
+        
+    return {
+        crops, supply,
+        overview: { totalCrops, supplyItems, lowStockAlerts, upcomingHarvests}
+    }
+    } catch(err) {
+        console.error("Error loading overview data", err);
+        return {
+            crops: [], supply: [], overview: {}
+        }
     }
 }
