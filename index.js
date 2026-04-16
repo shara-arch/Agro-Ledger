@@ -106,9 +106,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadOverview();
 });
 
-// // Helper: supply status with color
-// function supplyStatus(item) {
-//   if (item.stock <= 0) return { label: 'Out of Stock', color: 'red' };
-//   if (item.stock < item.minLevel) return { label: 'Low Stock', color: 'yellow' };
-//   return { label: 'In Stock', color: 'green' };
-// }
+async function displayNotif() {
+    try {
+    const cropsRes = await fetch(cropsFile);
+    const cropsData = await cropsRes.json();
+    const supplyRes = await fetch(supplyFile);
+    const supplyData = await supplyRes.json();
+    const crops = cropsData.crops || [];
+    const supply = supplyData.supply || [];
+
+    //DOM
+    const container = document.querySelector("notifList");
+    
+
+    container.innerHTML = "";
+    const lowStock = supply.filter(item => item.stock < item.minLevel);
+
+    if(lowStock.length === 0 ) {
+        container.textContent = "✔ Stock Levels are sufficient. No new alerts at the .";
+        return;
+    }
+    lowStock.forEach(item => {
+        const p = document.createElement("p");
+        p.textContent = `${item.name}: only ${item.stock}${item.unit} remaining.`;
+        console.log('Container value:', container);
+console.log('Container type:', Object.prototype.toString.call(container));
+        container.appendChild(p);
+    });
+
+}catch(err) {
+        console.error("Error displaying notifictaions", err);
+        
+    }
+}
+displayNotif();
