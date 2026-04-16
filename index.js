@@ -27,4 +27,11 @@ function handleLogin(maxAttempts, correctUser, correctPass) {
  };
 }
 //initialize login
-const login = handleLogin(4, "farmer_shara", "iLoveFarming")
+const login = handleLogin(4, "farmer_shara", "iLoveFarming");
+//Log-out Function
+function logOut() {
+    const confirmLogout = confirm("Are you sure you want to log out?");
+    if(confirmLogout) {
+        
+    }
+}
