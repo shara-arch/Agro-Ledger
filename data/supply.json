@@ -1,5 +1,5 @@
 {
-  "supplies": [
+  "supply": [
     { "id": 1, "name": "NPK Fertilizer", "category": "Fertilizer", "stock": 250, "unit": "kg", "minLevel": 50, "notes": "20-20-20 blend" },
     { "id": 2, "name": "DAP Fertilizer", "category": "Fertilizer", "stock": 15, "unit": "kg", "minLevel": 30, "notes": "Di-ammonium phosphate" },
     { "id": 3, "name": "Pesticide Mix", "category": "Pesticide", "stock": 10, "unit": "L", "minLevel": 20, "notes": "Broad-spectrum" },

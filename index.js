@@ -78,8 +78,8 @@ async function loadOverview () {
     //compute summary metrics for dashboard
     const totalCrops = crops.length;
     const supplyItems = supply.length;
-    const lowStockAlerts = supply.filter(item => item.stock < minLevel).length;
-    const currentDate = new Date("");
+    const lowStockAlerts = supply.filter(item => item.stock < item.minLevel).length;
+    const currentDate = new Date();
     const upcomingHarvests = crops.filter(crop => new Date(crop.harvestDate) > currentDate).length;
 
     // Update DOM
