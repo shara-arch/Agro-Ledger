@@ -11,7 +11,7 @@ function handleLogin(maxAttempts, correctUser, correctPass) {
         window.location.href = "index.html";
     }
     //Authenticate username and password
-    if(username === correctUser && password === correctPass) {
+    if(userName === correctUser && password === correctPass) {
         localStorage.setItem("isLoggedIn", "true");
         window.location.href = "index.html";
     } else {
@@ -27,7 +27,7 @@ function handleLogin(maxAttempts, correctUser, correctPass) {
  };
 }
 //initialize login
-const login = handleLogin(4, "farmer_shara", "iLoveFarming");
+window.login = handleLogin(4, "farmer_shara", "iLoveFarming");
 //Log-out Function
 function logOut() {
     const confirmLogout = confirm("Are you sure you want to log out?");
@@ -42,6 +42,6 @@ function logOut() {
 //Auto-redirect if user is already logged in
 window.onload = function() {
     if(localStorage.getItem("isLoggedIn")=== "true") {
-        window.locaation.href = "index.html"
+        window.location.href = "index.html"
     }
 };
