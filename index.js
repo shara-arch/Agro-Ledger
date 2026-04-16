@@ -26,3 +26,5 @@ function handleLogin(maxAttempts, correctUser, correctPass) {
     }
  };
 }
+//initialize login
+const login = handleLogin(4, "farmer_shara", "iLoveFarming")
