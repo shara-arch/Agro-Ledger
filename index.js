@@ -179,4 +179,42 @@ async function displayRecentCrops() {
     console.error("Error displaying recent crops", err)
   }
 }
-setInterval(displayRecentCrops, 60000);
+// setInterval(displayRecentCrops, 60000);
+displayRecentCrops();
+
+//Function that displays Supply Status
+async function renderSupplyStatus() {
+    try {
+        const { supply } = await loadData();
+        const container = document.querySelector("#summarySupplyList")
+    if (!container) {
+      console.error("Container #summarySupplyList not found");
+      return;
+    }
+
+    container.innerHTML="";
+
+    if (!supply || supply.length === 0) {
+      container.textContent = "No supply found.";
+      return;
+    }
+        // const lowStock = supply.filter(item => item.stock < item.minLevel);
+
+        let supplyStatus;
+        if(supply.stock < supply.minLevel){
+            supplyStatus = `Low Stock`
+        } else {
+            supplyStatus = "In stock"
+        };
+
+    supply.forEach(item =>{
+        const card = document.createElement("div");
+        card.classList.add("supply-status-card");
+
+        card.innerHTML = `${supply.name}----  ${supplyStatus}`;
+        container.appendChild(card);
+    })
+    } catch(err){
+        console.error(`Erroe rendering Supply Status`, err);
+    }
+}
