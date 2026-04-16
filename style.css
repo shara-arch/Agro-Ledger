@@ -1,0 +1,32 @@
+body{
+    background-color: #E0E0E0;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    margin: 0;
+}
+.side-panel {
+    width: 20rem;
+    background-color: #828E82;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    position: fixed;
+}
+.side-panel a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+}
+.user-details button{
+    background-color: #3A606E;
+    padding: 0.7rem 2rem;
+    border-radius: 10px;
+    border-color: #828E82;
+    color: white;
+    font-weight: 400;
+}
+.user-details button:hover{
+    background-color: rgb(196, 42, 42);
+    opacity:0.7;
+}
