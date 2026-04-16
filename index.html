@@ -27,14 +27,18 @@
             <h1>Dashboard</h1>
             <p class="welcome-sub" id="welcomeSub">Welcome back, <span id="welcomeName"></span></p>
             </div>
-                <div id="notifBell" class="notif-bell"><button onclick="displayNotif()">
-                    🔔<span id="notifCount">0</span></button>
-                </div>
+                
         </header>
-        <div class="notif-panel" id="notifPanel">
+        <details>
+                <summary class="notif-bell" onclick="displayNotif()">
+                    🔔<span id="notifCount">0</span></summary>
+               
+         <div class="notif-panel" id="notifPanel">
             <h3>Low Stock Alerts</h3>
-            <ul id="notifList"></ul>
-        </div>
+            <ul id="notifList">✔ Stock Levels are sufficient. No new alerts at the time.</ul>
+        </div>       
+        </details>
+        
         <section class="overview">
             <p class="overview-sub">Overview of your farm</p>
             <div class="overview-container">

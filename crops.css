@@ -13,6 +13,9 @@
     color: white;
     font-weight: 600;
 }
+#add-crop-btn:hover{
+    cursor: pointer;
+}
 .add-crop-Form{
     background-color: white;
     width: 30%;

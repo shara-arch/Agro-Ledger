@@ -87,6 +87,7 @@ async function loadOverview () {
     document.getElementById("supplyItemsValue").textContent = supplyItems;
     document.getElementById("lowStockAlertsValue").textContent = lowStockAlerts;
     document.getElementById("upcomingHarvestsValue").textContent = upcomingHarvests;
+    document.getElementById("notifCount").textContent = lowStockAlerts;
         
     return {
         crops, supply,
