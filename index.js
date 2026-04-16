@@ -50,5 +50,16 @@ window.onload = function() {
 const fs = require('fs');
 const path = require('path');
 
+// File paths
+const cropsFile = path.join(__dirname, 'data','crops.json');
+const suppliesFile = path.join(__dirname, 'data','supplies.json');
+
+// Load data
+function loadData() {
+  const cropsData = JSON.parse(fs.readFileSync(cropsFile, 'utf-8'));
+  const suppliesData = JSON.parse(fs.readFileSync(suppliesFile, 'utf-8'));
+  return { crops: cropsData.crops, supplies: suppliesData.supplies };
+}
+
 
 
