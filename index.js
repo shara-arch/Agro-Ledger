@@ -96,6 +96,10 @@ async function loadOverview () {
         console.error("Error loading overview data", err);
         return {
             crops: [], supply: [], overview: {}
-        }
+        };
     }
 }
+//call loadOverview on page reload
+document.addEventListener('DOMContentLoaded', async ()=>{
+    await loadOverview();
+});
