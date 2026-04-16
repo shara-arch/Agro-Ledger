@@ -52,13 +52,34 @@ const cropsFile = "data/crops.json";
 const supplyFile = "data/crops.json"
 
 //Load data
-async function loadData(params) {
+async function loadData() {
     const cropsRes = await fetch(cropsFile);
     const cropsData = await cropsRes.json();
     const supplyRes = await fetch(supplyFile);
     const supplyData = await supplyFile.json();
     const crops = cropsData.crops || [];
     const supply = supplyData.supply || [];
+    return {
+        crops: cropsData.crops,
+        supply: supplyData.supply
+    }
 }
 
+//Load OverView Data
+async function loadOverview () {
+    try {
+    const cropsRes = await fetch(cropsFile);
+    const cropsData = await cropsRes.json();
+    const supplyRes = await fetch(supplyFile);
+    const supplyData = await supplyFile.json();
+    const crops = cropsData.crops || [];
+    const supply = supplyData.supply || [];
 
+    //compute summary metrics for dashboard
+    const totalCrops = crops.length;
+    const supplyItems = supply.length;
+    const lowStockAlerts = supply.filter(item => item.stock < minLevel).length;
+    const currentDate = new Date();
+    const upcomingHarvests = crops.filter(crop => new Date(crop.harvestDate) > currentDate).length;
+    }
+}
