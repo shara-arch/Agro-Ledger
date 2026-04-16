@@ -35,5 +35,7 @@ function logOut() {
         localStorage.removeItem("isLoggedIn"); //clears login state
     alert("You have been logged out.");
     window.location.href = "login.html";// redirects back to login page
-    } 
+    } else {
+        alert("Logout Cancelled.")
+    }
 }
