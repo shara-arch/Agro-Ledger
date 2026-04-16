@@ -50,4 +50,8 @@ body{
     opacity: 1.5;
     cursor: pointer;
 }
+.login-hint {
+    font-size: 0.8rem;
+    color: rgb(66, 65, 65);
+}
 
