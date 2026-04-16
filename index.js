@@ -39,3 +39,9 @@ function logOut() {
         alert("Logout Cancelled.")
     }
 }
+//Auto-redirect if user is already logged in
+window.onload = function() {
+    if(localStorage.getItem("isLoggedIn")=== "true") {
+        window.locaation.href = "index.html"
+    }
+};
