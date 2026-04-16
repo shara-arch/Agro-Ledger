@@ -81,5 +81,12 @@ async function loadOverview () {
     const lowStockAlerts = supply.filter(item => item.stock < minLevel).length;
     const currentDate = new Date();
     const upcomingHarvests = crops.filter(crop => new Date(crop.harvestDate) > currentDate).length;
+
+    // Update DOM
+    document.getElementById("totalCropsValue").textContent = totalCrops;
+    document.getElementById("supplyItemsValue").textContent = supplyItems;
+    document.getElementById("lowStockValue").textContent = lowStockAlerts;
+    document.getElementById("upcomingHarvestsValue").textContent = upcomingHarvests;
+
     }
 }
