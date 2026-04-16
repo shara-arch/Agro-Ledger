@@ -1,7 +1,7 @@
 .crops{
     width: 100%;
     padding: 3rem;
-    background-color: beige;
+    background-color: #E0E0E0;
 
 }
 .crops #add-crop-btn{
@@ -13,3 +13,82 @@
     color: white;
     font-weight: 600;
 }
+.add-crop-Form{
+    background-color: white;
+    width: 30%;
+    padding: 2rem;
+    font-size: 1.1rem;
+    border-radius: 20px;
+}
+.crop-input{
+    width: 90%;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #E0E0E0;
+    
+}
+.add-crop-container{
+    display: grid;
+    grid-template-columns: 180px 200px 1fr 1fr;
+    column-gap:10%;
+
+    
+}
+
+.add-crop-container input{
+    background-color:#E0E0E0;
+    border-radius: 10px;
+    padding: 0.5rem;
+    width: 90%;
+}
+.add-crop-container select, option{
+    background-color:#E0E0E0;
+    border-radius: 10px;
+    padding: 0.5rem;
+    width: 100%;
+}
+.cropForm{
+    display: flex;
+    justify-content: center;
+}
+#top-cancel-btn{
+    display: flex;
+    justify-self: end;
+    background-color: white;
+    border-color: white;
+    color: red;
+}
+#top-cancel-btn:hover{
+    background-color: #E0E0E0;
+    cursor: pointer;
+}
+#close-form {
+    background-color: rgb(236, 232, 232);
+    padding: 1rem;
+    border-radius: 10px;
+    border-color:rgb(236, 232, 232);
+    display: flex;
+    justify-self: start;
+ ;
+}
+#saveCrop{
+    background-color: #607B7D;
+    padding: 1rem;
+    border-radius: 20px;
+    color:white;
+    border-color: #607B7D;
+    display: flex;
+    justify-self: end;
+}
+#close-form:hover{
+    background-color: rgb(174, 43, 43);
+    opacity: 0.8;
+    cursor: pointer;
+}
+#saveCrop:hover{
+    background-color: #3A606E;
+    cursor: pointer;
+
+}
+
+
