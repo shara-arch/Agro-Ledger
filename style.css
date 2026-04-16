@@ -3,6 +3,8 @@ body{
     font-family: 'DM Sans', sans-serif;
     display: flex;
     margin: 0;
+    /* display: grid;
+    grid-template-columns: 20rem 1fr; */
 }
 .side-panel {
     width: 20rem;
@@ -10,7 +12,7 @@ body{
     color: white;
     min-height: 100vh;
     padding: 20px;
-    position: fixed;
+    /* position: fixed; */
 }
 .side-panel a {
     display: block;
@@ -29,4 +31,40 @@ body{
 .user-details button:hover{
     background-color: rgb(196, 42, 42);
     opacity:0.7;
+}
+.dashboard{
+    padding: 3rem;
+}
+.overview-container {
+    display: flex;
+    justify-content: space-between;
+}
+.overview-card {
+    margin: 2rem;
+    background-color: #AAAE8E;
+    padding: 1rem 8rem 1rem 1rem;
+    border-radius: 10px;
+    font-weight: 500;    
+}
+.overview-card span {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+}
+.notif-bell button {
+    /* background-color: green; */
+    border-radius: 10px;
+    padding: 1rem;
+    border-color: #E0E0E0;
+}
+.notif-bell span {
+    background-color: red;
+    color: white;
+    font-weight: 800;
+    padding: 0.1rem;
+    border-radius: 100%;
+    
 }

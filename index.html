@@ -10,7 +10,7 @@
     <section class="side-panel">
         <h2>Agro Ledger</h2>
         <a href="index.html">Dashboard</a>
-       <a href="search.html">Search</a> 
+        <a href="search.html">Search</a> 
         <a href="crops.html">Crops</a>
         <a href="supply.html">Supply</a>    
         <a href="statistics.html">Statistics</a>
@@ -21,14 +21,14 @@
             <button onclick="logOut()" class="logoout-btn" id="logoutBtn">← Log Out</button>
         </div>
     </section>
-    <section class="Dashboard">
+    <section class="dashboard">
         <header>
             <div>
             <h1>Dashboard</h1>
             <p class="welcome-sub" id="welcomeSub">Welcome back, <span id="welcomeName"></span></p>
             </div>
-                <div id="notifBell" class="notif-bell">
-                    🔔<span id="notifCount">0</span>
+                <div id="notifBell" class="notif-bell"><button onclick="displayNotif()">
+                    🔔<span id="notifCount">10</span></button>
                 </div>
         </header>
         <div class="notif-panel" id="notifPanel">
@@ -37,17 +37,19 @@
         </div>
         <section class="overview">
             <p class="overview-sub">Overview of your farm</p>
-            <div class="total-crops" id="totalCrops">Totoal Crops<br>
+            <div class="overview-container">
+            <div class="overview-card" id="totalCrops">Total Crops<br><br>
                 <span id="totalCropsValue">0</span>
             </div>
-            <div class="supply-items" id="supplyItems">Supply Items<br>
+            <div class="overview-card" id="supplyItems">Supply Items<br><br>
                 <span id="supplyItemsValue">0</span>
             </div>
-            <div class="low-stock-alerts" id="lowStockAlerts">Low Stock Alerts<br>
+            <div class="overview-card" id="lowStockAlerts">Low Stock Alerts<br><br>
                 <span id="lowStockAlertsValue">0</span>
             </div>
-            <div class="upcoming-harvests" id="upcomingHarvests">Upcoming Harvests<br>
+            <div class="overview-card" id="upcomingHarvests">Upcoming Harvests<br><br>
                 <span id="upcomingHarvestsValue">0</span>
+                </div>
             </div>
         </section>
         <section > 
