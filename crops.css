@@ -1,0 +1,15 @@
+.crops{
+    width: 100%;
+    padding: 3rem;
+    background-color: beige;
+
+}
+.crops #add-crop-btn{
+    display: flex;
+    justify-self: right;
+    padding: 1rem 2rem;
+    background-color: #3A606E;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+}

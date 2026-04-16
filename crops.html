@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crops</title>
     <link href="style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="crops.css"/>
 </head>
 <body>
     <section class="side-panel">
@@ -21,6 +22,28 @@
             <button onclick="logOut()" class="logoout-btn" id="logoutBtn">← Log Out</button>
         </div>
     </section>
+    <section class="crops">
+        <header>
+        
+        <div>
+        <h1>Crops</h1>
+        <p class="crop-sub">Manage your crop inventory.</p>
+        </div>
+        <div id="notifBell" class="notif-bell"><button onclick="displayNotif()">
+                    🔔<span id="notifCount">0</span></button>
+        </div>
+        </header>
+        <button id="add-crop-btn" onclick="addCrop()">➕ Add Crop</button>
+        <div>
+            <form>
+                
+            </form>
+        </div>
+        <section>
+
+        </section>
+    </section>
     <script src="index.js"></script>
+    <script src="crops.js"></script>
 </body>
 </html>

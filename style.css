@@ -20,6 +20,7 @@ body{
     text-decoration: none;
     padding: 10px 0;
 }
+
 .user-details button{
     background-color: #3A606E;
     padding: 0.7rem 2rem;
@@ -31,6 +32,7 @@ body{
 .user-details button:hover{
     background-color: rgb(196, 42, 42);
     opacity:0.7;
+    border-color: black;
 }
 .dashboard{
     padding: 3rem;
