@@ -116,21 +116,21 @@ async function displayNotif() {
     const supply = supplyData.supply || [];
 
     //DOM
-    const container = document.querySelector("notifList");
+    const container = document.querySelector("#notifList");
     
 
     container.innerHTML = "";
     const lowStock = supply.filter(item => item.stock < item.minLevel);
 
     if(lowStock.length === 0 ) {
-        container.textContent = "✔ Stock Levels are sufficient. No new alerts at the .";
+        container.textContent = "✔ Stock Levels are sufficient. No new alerts at the moment.";
         return;
     }
+    const div = document.createElement("div");
+    div.classList.add("low-stock");
     lowStock.forEach(item => {
         const p = document.createElement("p");
         p.textContent = `${item.name}: only ${item.stock}${item.unit} remaining.`;
-        console.log('Container value:', container);
-console.log('Container type:', Object.prototype.toString.call(container));
         container.appendChild(p);
     });
 
@@ -139,4 +139,5 @@ console.log('Container type:', Object.prototype.toString.call(container));
         
     }
 }
-displayNotif();
+//This creates infinite recursion
+setInterval(displayNotif, 60000); //runs every 60 sec
