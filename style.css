@@ -34,6 +34,7 @@ body{
 }
 .dashboard{
     padding: 3rem;
+    width:100%;
 }
 .overview-container {
     display: flex;
