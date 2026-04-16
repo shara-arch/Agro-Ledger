@@ -46,25 +46,19 @@ window.onload = function() {
     }
 };
 
-//Load Data
-const fs = require('fs');
-const path = require('path');
+//Load data 
+//File paths
+const cropsFile = "data/crops.json";
+const supplyFile = "data/crops.json"
 
-// File paths
-const cropsFile = path.join(__dirname, 'data','crops.json');
-const suppliesFile = path.join(__dirname, 'data','supplies.json');
-
-// Load data
-function loadData() {
-  const cropsData = JSON.parse(fs.readFileSync(cropsFile, 'utf-8'));
-  const suppliesData = JSON.parse(fs.readFileSync(suppliesFile, 'utf-8'));
-  return { crops: cropsData.crops, supplies: suppliesData.supplies };
+//Load data
+async function loadData(params) {
+    const cropsRes = await fetch(cropsFile);
+    const cropsData = await cropsRes.json();
+    const supplyRes = await fetch(supplyFile);
+    const supplyData = await supplyFile.json();
+    const crops = cropsData.crops || [];
+    const supply = supplyData.supply || [];
 }
-// Save data
-function saveData(crops, supplies) {
-  fs.writeFileSync(cropsFile, JSON.stringify({ crops }, null, 2));
-  fs.writeFileSync(suppliesFile, JSON.stringify({ supplies }, null, 2));
-}
-
 
 
