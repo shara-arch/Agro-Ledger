@@ -49,7 +49,7 @@ window.onload = function() {
 //Load data 
 //File paths
 const cropsFile = "data/crops.json";
-const supplyFile = "data/crops.json"
+const supplyFile = "data/supply.json";
 
 //Load data
 async function loadData() {
@@ -62,7 +62,7 @@ async function loadData() {
     return {
         crops: cropsData.crops,
         supply: supplyData.supply
-    }
+    };
 }
 
 //Load OverView Data
@@ -71,7 +71,7 @@ async function loadOverview () {
     const cropsRes = await fetch(cropsFile);
     const cropsData = await cropsRes.json();
     const supplyRes = await fetch(supplyFile);
-    const supplyData = await supplyFile.json();
+    const supplyData = await supplyRes.json();
     const crops = cropsData.crops || [];
     const supply = supplyData.supply || [];
 
@@ -79,13 +79,13 @@ async function loadOverview () {
     const totalCrops = crops.length;
     const supplyItems = supply.length;
     const lowStockAlerts = supply.filter(item => item.stock < minLevel).length;
-    const currentDate = new Date();
+    const currentDate = new Date("");
     const upcomingHarvests = crops.filter(crop => new Date(crop.harvestDate) > currentDate).length;
 
     // Update DOM
     document.getElementById("totalCropsValue").textContent = totalCrops;
     document.getElementById("supplyItemsValue").textContent = supplyItems;
-    document.getElementById("lowStockValue").textContent = lowStockAlerts;
+    document.getElementById("lowStockAlertsValue").textContent = lowStockAlerts;
     document.getElementById("upcomingHarvestsValue").textContent = upcomingHarvests;
         
     return {
@@ -100,6 +100,6 @@ async function loadOverview () {
     }
 }
 //call loadOverview on page reload
-document.addEventListener('DOMContentLoaded', async ()=>{
+document.addEventListener('DOMContentLoaded', async () => {
     await loadOverview();
 });
