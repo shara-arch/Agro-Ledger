@@ -21,6 +21,20 @@
             <button onclick="logOut()" class="logoout-btn" id="logoutBtn">← Log Out</button>
         </div>
     </section>
+    <section> 
+        <h1> Search</h1>
+         <div class="search-card">
+          <div class="search-bar-wrap">
+            <input type="text" id="search-input" class="search-input" placeholder="Search crops or supplies..." />
+            <button class="search-btn" id="searchBtn" onclick="search">🔍 Searchh</button>
+          </div>
+          <div class="search-filters">
+            <label><input type="checkbox" id="filter-crops" checked onchange="performSearch()"/> Crops</label>
+            <label><input type="checkbox" id="filter-supplies" checked onchange="performSearch()"/> Supplies</label>
+          </div>
+        </div>
+        <div id="search-results" class="search-results"></div>
+    </section>
     <script src="index.js"></script>
 </body>
 </html>

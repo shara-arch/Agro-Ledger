@@ -103,3 +103,10 @@ async function loadOverview () {
 document.addEventListener('DOMContentLoaded', async () => {
     await loadOverview();
 });
+
+// // Helper: supply status with color
+// function supplyStatus(item) {
+//   if (item.stock <= 0) return { label: 'Out of Stock', color: 'red' };
+//   if (item.stock < item.minLevel) return { label: 'Low Stock', color: 'yellow' };
+//   return { label: 'In Stock', color: 'green' };
+// }
