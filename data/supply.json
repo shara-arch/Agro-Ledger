@@ -1,1 +1,11 @@
-
+{
+  "supplies": [
+    { "id": 1, "name": "NPK Fertilizer", "category": "Fertilizer", "stock": 250, "unit": "kg", "minLevel": 50, "notes": "20-20-20 blend" },
+    { "id": 2, "name": "DAP Fertilizer", "category": "Fertilizer", "stock": 15, "unit": "kg", "minLevel": 30, "notes": "Di-ammonium phosphate" },
+    { "id": 3, "name": "Pesticide Mix", "category": "Pesticide", "stock": 10, "unit": "L", "minLevel": 20, "notes": "Broad-spectrum" },
+    { "id": 4, "name": "Tomato Seeds", "category": "Seed", "stock": 500, "unit": "units", "minLevel": 100, "notes": "F1 hybrid" },
+    { "id": 5, "name": "Maize Seeds", "category": "Seed", "stock": 200, "unit": "kg", "minLevel": 50, "notes": "H614D variety" },
+    { "id": 6, "name": "Drip Irrigation", "category": "Irrigation", "stock": 8, "unit": "units", "minLevel": 5, "notes": "Emitter kits" },
+    { "id": 7, "name": "Compost", "category": "Fertilizer", "stock": 400, "unit": "kg", "minLevel": 100, "notes": "Organic compost" }
+  ]
+}
