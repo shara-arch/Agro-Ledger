@@ -60,6 +60,11 @@ function loadData() {
   const suppliesData = JSON.parse(fs.readFileSync(suppliesFile, 'utf-8'));
   return { crops: cropsData.crops, supplies: suppliesData.supplies };
 }
+// Save data
+function saveData(crops, supplies) {
+  fs.writeFileSync(cropsFile, JSON.stringify({ crops }, null, 2));
+  fs.writeFileSync(suppliesFile, JSON.stringify({ supplies }, null, 2));
+}
 
 
 
