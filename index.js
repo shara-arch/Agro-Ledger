@@ -198,23 +198,20 @@ async function renderSupplyStatus() {
       container.textContent = "No supply found.";
       return;
     }
-        // const lowStock = supply.filter(item => item.stock < item.minLevel);
 
-        let supplyStatus;
-        if(supply.stock < supply.minLevel){
-            supplyStatus = `Low Stock`
-        } else {
-            supplyStatus = "In stock"
-        };
 
-    supply.forEach(item =>{
+    supply.forEach(item => {
+         if (!item.name) return; // skip invalid entries
+
+        const supplyStatus = item.stock > item.minLevel ? "In Stock" : "Low stock";
         const card = document.createElement("div");
         card.classList.add("supply-status-card");
 
-        card.innerHTML = `${supply.name}----  ${supplyStatus}`;
+        card.innerHTML = `${item.name} ----  ${supplyStatus}`;
         container.appendChild(card);
-    })
+    });
     } catch(err){
-        console.error(`Erroe rendering Supply Status`, err);
+        console.error(`Error rendering Supply Status`, err);
     }
 }
+renderSupplyStatus();
