@@ -50,3 +50,36 @@ async function renderCrops() {
   }
 }
 renderCrops();
+
+async function renderSupply() {
+    try {
+        const { supply } = await loadData();
+        const container = document.querySelector("#supplyList")
+    if (!container) {
+      console.error("Container #supplyList not found");
+      return;
+    }
+
+    container.innerHTML="";
+
+    if (!supply || supply.length === 0) {
+      container.textContent = "No supply found.";
+      return;
+    }
+
+
+    supply.forEach(item => {
+         if (!item.name) return; // skip invalid entries
+
+        const supplyStatus = item.stock > item.minLevel ? "In Stock" : "Low stock";
+        const card = document.createElement("div");
+        card.classList.add("supply-status-card");
+
+        card.innerHTML = `<p>${item.name} -- (${item.notes}) ---- ${item.category} --- ${item.stock} --- ${item.unit} --- ${item.minLevel} --- ${supplyStatus}  <button> Edit </button ---  <button> Del </button> </p>`;
+        container.appendChild(card);
+    });
+    } catch(err){
+        console.error(`Error rendering Supply Status`, err);
+    }
+}
+renderSupply();

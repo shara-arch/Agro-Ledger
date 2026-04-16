@@ -21,7 +21,66 @@
             <button onclick="logOut()" class="logoout-btn" id="logoutBtn">← Log Out</button>
         </div>
     </section>
-    <script src="index.js"></script>
+    <section class="supply">
+        <header>
+            <div>
+        <h1>Supply</h1>
+        <p class="supply-sub">Manage farm supply stock.</p>
+        </div>
+        </header>
+        <details>
+        <summary id="add-crop-btn">➕ Add Supply</summary>
+        <div class="supplyForm">
+            <form class="add-supply-Form">
+                 <button class="cancel" id="top-cancel-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+                    <h2>Add Supply</h2>
+                    <label>Crop Name</label><br>
+                    <input type="text" id="itemName" class="supply-input" placeholder="e.g. Maize" required/><br><br>
+                    <div class="add-crop-container">
+                        <div>
+                    <label>Type:</label><br>
+                     <select id="cropType" required>
+                          <option value="Cereal">Cereal</option>
+                          <option value="Grain">Grain</option>
+                          <option value="Legume">Legume</option>
+                          <option value="Fruit">Fruit</option>
+                          <option value="Vegetable">Vegetable</option>
+                         
+                    </select>
+                    </div>
+                    <div>
+                        <label>Quantity(kg)</label><br>
+                        <input type="number" placeholder="500" required/>
+                    </div>
+                    </div><br>
+                    <div class="add-crop-container">
+                        <div>
+                        <label>Growth Stage</label><br>
+                        <select id="growthStage" required>
+                            <option value="Seedling">Seedling</option>
+                            <option value="Vegetative">Vegetative</option>
+                            <option value="Flowering">Flowering</option>
+                            <option value="Fruiting">Fruiting</option>
+                            <option value="Harvesting">Harvesting</option>
+                        </select>
+                        </div>
+                        <div>
+                            <label>Expected Harvest Date</label><br>
+                            <input type="date" placeholder="mm/dd/yyyy" required/>
+                        </div>
+                    </div><br><br>
+                    <label>Linked Supples(optional)</label><br>
+                    <input class="crop-input" type="text" placeholder="e.g. NPK Fertilizer, Irrigation"/><br><br>
+                    <button class="cancel" id="close-form" onclick="this.parentElement.style.display='none'">Cancel</button>
+                    <button id="saveCrop" onclick="addCrop()">Save Crop</button>
+            </form>
+        </div>
+        <section></section></details>
+        <section class="supply-list">
+            <ul id="supplyList"></ul>
+        </section>
+    </section>
+    <script src="crops.js"></script>
 </body>
 </html>
 
