@@ -7,6 +7,7 @@
 </head>
 <body>
     <section class="side-panel">
+        <h2>Agro Ledger</h2>
         <a href="index.html">Dashboard</a>
        <a href="search.html">Search</a> 
         <a href="crops.html">Crops</a>
@@ -17,7 +18,7 @@
     <section class="Dashboard">
         <header>
             <div>
-            <h2>Dashboard</h2>
+            <h1>Dashboard</h1>
             <p class="welcome-sub" id="welcomeSub">Welcome back, <span id="welcomeName"></span></p>
             </div>
                 <div id="notifBell" class="notif-bell">
@@ -41,6 +42,16 @@
             </div>
             <div class="upcoming-harvests" id="upcomingHarvests">Upcoming Harvests<br>
                 <span id="upcomingHarvestsValue">0</span>
+            </div>
+        </section>
+        <section > 
+            <div class="summary">
+                <h3>Recent Crops</h3>
+                <ul id="summaryCropsList" class="item-list"></ul>
+            </div>
+            <div>
+                <h3>Supply Status</h3>
+                <ul id="summarySupplyList"></ul>
             </div>
         </section>
     </section>
