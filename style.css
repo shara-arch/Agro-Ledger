@@ -76,3 +76,6 @@ header {
 .notif-bell button:hover {
     cursor: pointer;
 }
+.notif-panel.active{
+    background-color: red;
+}

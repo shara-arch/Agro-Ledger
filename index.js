@@ -53,16 +53,21 @@ const supplyFile = "data/supply.json";
 
 //Load data
 async function loadData() {
+    try{
     const cropsRes = await fetch(cropsFile);
     const cropsData = await cropsRes.json();
     const supplyRes = await fetch(supplyFile);
-    const supplyData = await supplyFile.json();
+    const supplyData = await supplyRes.json();
     const crops = cropsData.crops || [];
     const supply = supplyData.supply || [];
-    return {
-        crops: cropsData.crops,
-        supply: supplyData.supply
-    };
+    return { crops, supply };
+        // crops: cropsData.crops,
+        // supply: supplyData.supply
+    
+}catch (err){
+     console.error("Error loading data", err);
+        return { crops: [], supply: [] }; // fallback
+}
 }
 
 //Load OverView Data
@@ -126,13 +131,16 @@ async function displayNotif() {
         container.textContent = "✔ Stock Levels are sufficient. No new alerts at the moment.";
         return;
     }
-    const div = document.createElement("div");
-    div.classList.add("low-stock");
+    //Styling to make background red/green
+    const notifPanel = document.querySelectorAll(".notif-panel");
+    //--------------------------------------------------------------------
     lowStock.forEach(item => {
         const p = document.createElement("p");
         p.textContent = `${item.name}: only ${item.stock}${item.unit} remaining.`;
         container.appendChild(p);
+        
     });
+    // div.classList.add("low-stock");
 
 }catch(err) {
         console.error("Error displaying notifictaions", err);
@@ -141,3 +149,34 @@ async function displayNotif() {
 }
 //This creates infinite recursion
 setInterval(displayNotif, 60000); //runs every 60 sec
+
+//Create global Function to fetch data
+async function displayRecentCrops() {
+    try{
+    const { crops } = await loadData();
+    const container = document.querySelector("#summaryCropsList");
+
+    if (!container) {
+      console.error("Container #summaryCropsList not found");
+      return;
+    }
+
+    container.innerHTML="";
+
+    if (!crops || crops.length === 0) {
+      container.textContent = "No crops found.";
+      return;
+    }
+
+    crops.forEach(crop =>{
+        const card = document.createElement("div");
+        card.classList.add("recent-crop-card");
+
+        card.innerHTML = `${crop.name}----  ${crop.stage}`;
+        container.appendChild(card);
+    })
+  } catch (err) {
+    console.error("Error displaying recent crops", err)
+  }
+}
+setInterval(displayRecentCrops, 60000);
