@@ -54,21 +54,21 @@ async function performSearch() {
         //Display results
         results.forEach(item =>{
             const div = document.createElement("div");
-            div.classList.add('resultcard');
-            div.innerHTML = `<h3>${item.name}</h3>
-            <p style="display: flex; justify-content:space-between; background-color: red;">
-            <div>
+            div.classList.add("resultcard");
+            div.innerHTML = `<section class="result-container"><h3>${item.name}</h3>
+            <p>
+            
             ${item.type ?`<span>${item.type} • </span>` : ""}
             ${item.qty ?`<span>${item.qty} • </span>` : ""}
             ${item.stage ?`<span>Stage: ${item.stage} • </span>` : ""}
-            ${item.harvestDate ?`<span>Harvest:${item.harvestDate} • </span>` : ""}
+            ${item.harvestDate ?`<span>Harvest:${item.harvestDate}  </span>` : ""}
             ${item.category ?`<span>Category: ${item.category} • </span>` : ""}
             ${item.stock ?`<span>Stock: ${item.stock} • </span>` : ""}
-            ${item.minLevel ?`<span>Minimum Level: ${item.minLevel} • </span>` : ""}
-            </div>
-            <div> ${item.itemCategory}</div>
+            ${item.minLevel ?`<span>Minimum Level: ${item.minLevel}  </span>` : ""}</p>
+           </section>
+            <div id="itemCategory"> ${item.itemCategory}</div>
             
-            </p>`;
+            `;
             resultContainer.appendChild(div);
         })
     } catch(err){

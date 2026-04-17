@@ -32,3 +32,30 @@
     border-radius: 10px;
 
 }
+.search-results div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem 1rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.result-container {
+     
+    width: 50%;
+}
+#itemCategory {
+    display: inline-block;
+    justify-self: end;
+    background-color: #3A606E;
+    max-width: fit-content;
+    border-radius:30px;
+    padding: 0.5rem;
+    opacity: 0.8;
+    max-height: min-content;
+    color: white;
+}
+.search-results {
+    margin: 1rem;
+}
