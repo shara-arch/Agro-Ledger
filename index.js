@@ -207,7 +207,7 @@ async function renderSupplyStatus() {
         const card = document.createElement("div");
         card.classList.add("supply-status-card");
 
-        card.innerHTML = `${item.name} ----  ${supplyStatus}`;
+        card.innerHTML = `<p><span>${item.name}</span>  <span>${supplyStatus}</span></p>`;
         container.appendChild(card);
     });
     } catch(err){

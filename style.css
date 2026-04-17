@@ -80,14 +80,14 @@ header {
     background-color: red;
 }
 
-.recent-crop-card {
+.recent-crop-card, .supply-status-card {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
     /* background-color: rgb(167, 190, 167); */
     /* border-radius: 10px; */
 }
-.recent-crop-card p{
+.recent-crop-card p {
     display: flex;
     justify-content: space-between;
     background-color: #cfdfcf;
@@ -95,9 +95,22 @@ header {
     width: 100%;
     border-radius: 50px;
 }
+.supply-status-card p{
+    display: flex;
+    justify-content: space-between;
+    background-color: #a8b2a8;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 50px;
+}
 .summary {
     display: grid;
-    grid-template-columns: 40rem 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    gap: 3rem;
+    width: 100%;
+    /* background-color: red; //    /*for testing */
+    padding: 0;
+    
 }
 
 .item-list{
