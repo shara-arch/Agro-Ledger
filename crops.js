@@ -90,7 +90,7 @@ async function renderSupply() {
             <td>${item.unit}</td>
             <td>${item.minLevel}</td>
             <td class="${supplyStatus === "In Stock" ? "status-in-stock" : "status-low"}">${supplyStatus}</td>
-            <td>${item.notes}</td>
+            <td>${item.notes || ""}</td>
             <td >
               <button class="edit">✏️</button>
               <button class="delete">🗑️</button>
