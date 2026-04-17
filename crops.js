@@ -85,5 +85,15 @@ async function renderSupply() {
 renderSupply();
 //This is a function that adds items to the array crops
 document.getElementById("add-crop-form").addEventListener("submit", function(event)) {
-  
+  event.preventDefault();
+
+  const name = document.getElementById("cropName").value.trim(); //.trim() removes white space
+  const type = document.getElementById("cropType").value;
+  const quantity = document.getElementById("cropQuantity").value.trim();
+  const stage = document.getElementById("growthStage").value;
+  const harvestDate = document.getElementById("expectedHarvestDate").value;
+  const cropSupplies = document.getElementById("cropSupplies").value.trim();
+
+  //convert comma separated string to an array
+  const suppliesArray = cropSupplies.split(",").map(item => item.trim);
 }

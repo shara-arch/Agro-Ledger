@@ -54,7 +54,7 @@
                     </div>
                     <div>
                         <label>Quantity(kg)</label><br>
-                        <input type="number" placeholder="500" required/>
+                        <input id="cropQuantity" type="number" placeholder="500" required/>
                     </div>
                     </div><br>
                     <div class="add-crop-container">
@@ -70,11 +70,11 @@
                         </div>
                         <div>
                             <label>Expected Harvest Date</label><br>
-                            <input type="date" placeholder="mm/dd/yyyy" required/>
+                            <input id="expectedHarvestDate" type="date" placeholder="mm/dd/yyyy" required/>
                         </div>
                     </div><br><br>
-                    <label>Linked Supples(optional)</label><br>
-                    <input class="crop-input" type="text" placeholder="e.g. NPK Fertilizer, Irrigation"/><br><br>
+                    <label>Linked Supplies(optional)</label><br>
+                    <input id="cropSupplies" class="crop-input" type="text" placeholder="e.g. NPK Fertilizer, Irrigation"/><br><br>
                     <button class="cancel" id="close-form" onclick="this.parentElement.style.display='none'">Cancel</button>
                     <button id="saveCrop" onclick="addCrop()" type="submit">Save Crop</button>
             </form>
