@@ -126,3 +126,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 });
+
+//This is a function that adds items to the array supply
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("add-supply-Form");
+  if (!form) {
+    console.error("Form #add-supply-Form not found");
+    return;
+  }
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+  const name = document.getElementById("itemName").value.trim(); //.trim() removes white space
+  const category = document.getElementById("supplyCategory").value;
+  const stock = document.getElementById("stockValue").value.trim();
+  const unit = document.getElementById("unit").value;
+  const minLevel = document.getElementById("minLevel").value;
+  const notes = document.getElementById("notes").value.trim();
+
+   
+  const id = supply.length + 1;
+  //Add supply to array
+  crops.push({
+    id,
+    name,
+    category,
+    stock,
+    unit,
+    minLevel,
+    notes
+  })
+  //refresh UI
+  renderSupply();
+  //Success Message
+  alert(`${name} has been added!`);
+  //Reset Form
+  document.getElementById("supplyForm").reset()
+
+});
+});

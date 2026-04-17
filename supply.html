@@ -32,7 +32,7 @@
         <details>
         <summary id="add-supply-btn">➕ Add Supply</summary>
         <div class="supplyForm">
-            <form class="add-supply-Form">
+            <form class="add-supply-Form" id="add-supply-Form">
                  <button class="cancel" id="top-cancel-btn" onclick="this.parentElement.style.display='none'">&times;</button>
                     <h2>Add Supply</h2>
                     <label>Supply Name</label><br>
@@ -69,13 +69,13 @@
                         </div>
                         <div>
                             <label>Minimum Level(Alert)</label><br>
-                            <input type="number" placeholder="30" required/>
+                            <input type="number" placeholder="30" id="minLevel" required/>
                         </div>
                     </div><br><br>
                     <label>Notes</label><br>
-                    <input class="supply-input" type="text" placeholder="Additional notes..." required/><br><br>
+                    <input class="supply-input" id="notes" type="text" placeholder="Additional notes..." required/><br><br>
                     <button class="cancel" id="close-form" onclick="this.parentElement.style.display='none'">Cancel</button>
-                    <button id="saveSupply" onclick="addSupply()">Save Supply</button>
+                    <button id="saveSupply" type="submit">Save Supply</button>
             </form>
         </div>
         <section></section></details>
