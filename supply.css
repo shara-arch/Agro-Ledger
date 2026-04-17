@@ -94,4 +94,44 @@
 
 }
 
+.supply-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
+
+.supply-table th, .supply-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.supply-table th {
+  background-color: #3A606E;
+  color: white;
+  font-weight: bold;
+}
+
+
+.supply-table tr:hover {
+  background-color: #e0e0e0;
+}
+
+.status-in-stock {
+  color: green;
+  font-weight: bold;
+}
+
+.status-low {
+  color: red;
+  font-weight: bold;
+}
+
+.supply-table {
+  background-color: white;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
 

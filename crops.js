@@ -37,7 +37,7 @@ async function renderCrops() {
     container.innerHTML="";
 
     if (!crops || crops.length === 0) {
-      container.textContent = "<tr><td colspan='6'>No crops found.</td></tr>";
+      container.innerHTML = "<tr><td colspan='6'>No crops found.</td></tr>";
       return;
     }
 
@@ -50,7 +50,7 @@ async function renderCrops() {
         <td>${crop.qty} kg</td>
         <td>${crop.stage}</td>
         <td>${crop.harvestDate}</td>
-        <td><button>✏️</button> <button> 🗑️</button> </td>
+        <td><button class="edit">✏️</button> <button class="delete"> 🗑️</button> </td>
       `;
       container.appendChild(row);
     })
@@ -58,11 +58,11 @@ async function renderCrops() {
     console.error("Error found trying to renderCrops", err)
   }
 }
-renderCrops();
+document.addEventListener("DOMContentLoaded",renderCrops);
 
 async function renderSupply() {
     try {
-        const container = document.querySelector("#supplyList")
+        const container = document.querySelector("#supplyTableBody");
     if (!container) {
       console.error("Container #supplyList not found");
       return;
@@ -71,7 +71,7 @@ async function renderSupply() {
     container.innerHTML="";
 
     if (!supply || supply.length === 0) {
-      container.textContent = "No supply found.";
+      container.innerHTML = "<tr><td colspan='7'>No supply found.</td></tr>";
       return;
     }
 
@@ -80,17 +80,28 @@ async function renderSupply() {
          if (!item.name) return; // skip invalid entries
 
         const supplyStatus = item.stock > item.minLevel ? "In Stock" : "Low stock";
-        const card = document.createElement("div");
-        card.classList.add("supply-status-card");
+        const row = document.createElement("tr");
+        row.classList.add("supply-status-card");
 
-        card.innerHTML = `<p>${item.name} -- (${item.notes}) ---- ${item.category} --- ${item.stock} --- ${item.unit} --- ${item.minLevel} --- ${supplyStatus}  <button> Edit </button ---  <button> Del </button> </p>`;
-        container.appendChild(card);
+          row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.category}</td>
+            <td>${item.stock}</td>
+            <td>${item.unit}</td>
+            <td>${item.minLevel}</td>
+            <td class="${supplyStatus === "In Stock" ? "status-in-stock" : "status-low"}">${supplyStatus}</td>
+            <td>${item.notes}</td>
+            <td >
+              <button class="edit">✏️</button>
+              <button class="delete">🗑️</button>
+            </td>`;
+        container.appendChild(row);
     });
     } catch(err){
         console.error(`Error rendering Supply Status`, err);
     }
 }
-renderSupply();
+document.addEventListener("DOMContentLoaded",renderSupply);
 
 // Load data and render initially
 loadData()
