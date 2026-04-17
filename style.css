@@ -79,3 +79,28 @@ header {
 .notif-panel.active{
     background-color: red;
 }
+
+.recent-crop-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    /* background-color: rgb(167, 190, 167); */
+    /* border-radius: 10px; */
+}
+.recent-crop-card p{
+    display: flex;
+    justify-content: space-between;
+    background-color: #cfdfcf;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 50px;
+}
+.summary {
+    display: grid;
+    grid-template-columns: 40rem 1fr 1fr;
+}
+
+.item-list{
+    background-color: #e9ece9;
+    border-radius: 20px;
+}

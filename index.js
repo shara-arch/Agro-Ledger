@@ -140,7 +140,7 @@ async function displayNotif() {
         container.appendChild(p);
         
     });
-    // div.classList.add("low-stock");
+    div.classList.add("low-stock");
 
 }catch(err) {
         console.error("Error displaying notifictaions", err);
@@ -172,7 +172,7 @@ async function displayRecentCrops() {
         const card = document.createElement("div");
         card.classList.add("recent-crop-card");
 
-        card.innerHTML = `${crop.name}----  ${crop.stage}`;
+        card.innerHTML = `<p><span>${crop.name}</span>  <span>${crop.stage}</span></p>`;
         container.appendChild(card);
     })
   } catch (err) {
