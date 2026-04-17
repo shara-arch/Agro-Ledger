@@ -83,3 +83,7 @@ async function renderSupply() {
     }
 }
 renderSupply();
+//This is a function that adds items to the array crops
+document.getElementById("add-crop-form").addEventListener("submit", function(event)) {
+  
+}
