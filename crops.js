@@ -83,9 +83,17 @@ async function renderSupply() {
     }
 }
 renderSupply();
+
 //This is a function that adds items to the array crops
-document.getElementById("add-crop-form").addEventListener("submit", function(event) {
-  event.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("add-crop-Form");
+  if (!form) {
+    console.error("Form #add-crop-Form not found");
+    return;
+  }
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
 
   const name = document.getElementById("cropName").value.trim(); //.trim() removes white space
   const type = document.getElementById("cropType").value;
@@ -94,23 +102,27 @@ document.getElementById("add-crop-form").addEventListener("submit", function(eve
   const harvestDate = document.getElementById("expectedHarvestDate").value;
   const cropSupplies = document.getElementById("cropSupplies").value.trim();
 
-  //convert comma separated string to an array
-  const suppliesArray = cropSupplies.split(",").map(item => item.trim);
+    const suppliesArray = cropSupplies
+      ? cropSupplies.split(",").map(item => item.trim()).filter(item => item)
+      : [];
 
-  const id = crop.id.length++
+  const id = crops.length + 1;
   //Add crop to array
   crops.push({
-    id: id,
-    name: name,
-    type: type,
+    id,
+    name,
+    type,
     qty: quantity,
-    stage: stage,
-    harvestDate: harvestDate,
-    suppliesArray: suppliesArray
+    stage,
+    harvestDate,
+    supplies: suppliesArray
   })
   //refresh UI
   renderCrops();
+  //Success Message
+  alert(`${name} has been added!`);
   //Reset Form
   document.getElementById("cropForm").reset()
 
+});
 });
