@@ -73,3 +73,7 @@ async function performSearch() {
     }
 
 }
+//Trigger Search on Typing/checkbox change
+document.getElementById("search-input").addEventListener("input", performSearch);
+document.getElementById("filter-crops").addEventListener("change", performSearch);
+document.getElementById("filter-supplies").addEventListener("change", performSearch);
