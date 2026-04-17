@@ -46,6 +46,10 @@ async function performSearch() {
             );
             results.push(...supplyMatches.map(c =>({...c, category:"Supply"})))
         }
+        //No results found 
+        if(results.length === 0) {
+            resultContainer.textContent = "No matching items found.";
+        }
         
     }
 
