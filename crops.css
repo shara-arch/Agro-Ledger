@@ -93,5 +93,31 @@
     cursor: pointer;
 
 }
+.crops-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border-radius: 10px;
 
+}
 
+.crops-table th, .crops-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.crops-table th {
+  background-color: #3A606E;
+  color: white;
+}
+.crops-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.crops-table{
+  background-color: white;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+}

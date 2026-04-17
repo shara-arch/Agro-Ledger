@@ -28,7 +28,7 @@ async function loadData() {
 //renderCrops
 async function renderCrops() {
     try {
-        const container = document.querySelector("#cropsList");
+        const container = document.querySelector("#cropsTableBody");
     if (!container) {
       console.error("Container #cropsList not found");
       return;
@@ -37,16 +37,22 @@ async function renderCrops() {
     container.innerHTML="";
 
     if (!crops || crops.length === 0) {
-      container.textContent = "No crops found.";
+      container.textContent = "<tr><td colspan='6'>No crops found.</td></tr>";
       return;
     }
 
     crops.forEach(crop =>{
-        const card = document.createElement("div");
-        card.classList.add("recent-crop-card");
+        const row = document.createElement("tr");
 
-        card.innerHTML = `${crop.name} -- ${crop.type} -- ${crop.qty} kg --  ${crop.stage} -- (${crop.harvestDate}) -- <button> Edit</button   <button> Del</button>`;
-        container.appendChild(card);
+      row.innerHTML = `
+        <td>${crop.name}</td>
+        <td>${crop.type}</td>
+        <td>${crop.qty} kg</td>
+        <td>${crop.stage}</td>
+        <td>${crop.harvestDate}</td>
+        <td><button>✏️</button> <button> 🗑️</button> </td>
+      `;
+      container.appendChild(row);
     })
   } catch(err){
     console.error("Error found trying to renderCrops", err)
