@@ -117,3 +117,12 @@ header {
     background-color: #e9ece9;
     border-radius: 20px;
 }
+#notifList {
+    background-color: rgb(238, 118, 118);
+    opacity: 0.8;
+    padding: 1rem;
+    border-radius: 10px;
+    border-color: red;
+    
+
+}
