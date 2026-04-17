@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supply</title>
     <link href="style.css" rel="stylesheet"/>
+    <link href="supply.css" rel="stylesheet"/>
 </head>
 <body>
     <section class="side-panel">
@@ -18,7 +19,7 @@
             <p> User: <span id="welcomeName"></span><br>
                 Farm Manager
             </p>
-            <button onclick="logOut()" class="logoout-btn" id="logoutBtn">← Log Out</button>
+            <button onclick="logOut()" class="logout-btn" id="logoutBtn">← Log Out</button>
         </div>
     </section>
     <section class="supply">
@@ -29,7 +30,7 @@
         </div>
         </header>
         <details>
-        <summary id="add-crop-btn">➕ Add Supply</summary>
+        <summary id="add-supply-btn">➕ Add Supply</summary>
         <div class="supplyForm">
             <form class="add-supply-Form">
                  <button class="cancel" id="top-cancel-btn" onclick="this.parentElement.style.display='none'">&times;</button>
@@ -74,7 +75,7 @@
                     <label>Notes</label><br>
                     <input class="supply-input" type="text" placeholder="Additional notes..." required/><br><br>
                     <button class="cancel" id="close-form" onclick="this.parentElement.style.display='none'">Cancel</button>
-                    <button id="saveCrop" onclick="addCrop()">Save Supply</button>
+                    <button id="saveSupply" onclick="addSupply()">Save Supply</button>
             </form>
         </div>
         <section></section></details>
