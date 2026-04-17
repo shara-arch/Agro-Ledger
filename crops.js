@@ -3,6 +3,9 @@
 const cropsFile = "data/crops.json";
 const supplyFile = "data/supply.json";
 
+let crops = [];
+let supply = [];
+
 //Load data
 async function loadData() {
     try{
@@ -10,21 +13,21 @@ async function loadData() {
     const cropsData = await cropsRes.json();
     const supplyRes = await fetch(supplyFile);
     const supplyData = await supplyRes.json();
-    const crops = cropsData.crops || [];
-    const supply = supplyData.supply || [];
-    return { crops, supply };
-        // crops: cropsData.crops,
-        // supply: supplyData.supply
     
+    crops = cropsData.crops || [];
+    supply = supplyData.supply || [];
+    
+    return { crops, supply };
 }catch (err){
      console.error("Error loading data", err);
-        return { crops: [], supply: [] }; // fallback
+     crops = [];
+     supply = [];
+     return { crops: [], supply: [] }; // fallback
 }
 }
 //renderCrops
 async function renderCrops() {
     try {
-        const { crops } = await loadData();
         const container = document.querySelector("#cropsList");
     if (!container) {
       console.error("Container #cropsList not found");
@@ -53,7 +56,6 @@ renderCrops();
 
 async function renderSupply() {
     try {
-        const { supply } = await loadData();
         const container = document.querySelector("#supplyList")
     if (!container) {
       console.error("Container #supplyList not found");
@@ -83,6 +85,16 @@ async function renderSupply() {
     }
 }
 renderSupply();
+
+// Load data and render initially
+loadData()
+  .then(() => {
+    renderCrops();
+    renderSupply();
+  })
+  .catch(err => {
+    console.error("Error initializing data", err);
+  });
 
 //This is a function that adds items to the array crops
 document.addEventListener("DOMContentLoaded", () => {
@@ -138,31 +150,35 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", function(event) {
     event.preventDefault();
 
-  const name = document.getElementById("itemName").value.trim(); //.trim() removes white space
-  const category = document.getElementById("supplyCategory").value;
-  const stock = document.getElementById("stockValue").value.trim();
-  const unit = document.getElementById("unit").value;
-  const minLevel = document.getElementById("minLevel").value;
-  const notes = document.getElementById("notes").value.trim();
+    const name = document.getElementById("itemName").value.trim(); // trim whitespace
+    const category = document.getElementById("supplyCategory").value;
+    const stock = Number(document.getElementById("stockValue").value);
+    const unit = document.getElementById("unit").value;
+    const minLevel = Number(document.getElementById("minLevel").value);
+    const notes = document.getElementById("notes").value.trim();
 
-   
-  const id = supply.length + 1;
-  //Add supply to array
-  crops.push({
-    id,
-    name,
-    category,
-    stock,
-    unit,
-    minLevel,
-    notes
-  })
-  //refresh UI
-  renderSupply();
-  //Success Message
-  alert(`${name} has been added!`);
-  //Reset Form
-  document.getElementById("supplyForm").reset()
+    if (!name || !category || Number.isNaN(stock) || !unit || Number.isNaN(minLevel) || !notes) {
+      alert("Please complete all supply fields with valid values.");
+      return;
+    }
 
-});
+    const id = supply.length + 1;
+    //Add supply to array
+    supply.push({
+      id,
+      name,
+      category,
+      stock,
+      unit,
+      minLevel,
+      notes
+    });
+
+    //refresh UI
+    renderSupply();
+    //Success Message
+    alert(`${name} has been added!`);
+    //Reset Form
+    form.reset();
+  });
 });
