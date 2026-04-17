@@ -49,8 +49,27 @@ async function performSearch() {
         //No results found 
         if(results.length === 0) {
             resultContainer.textContent = "No matching items found.";
+            return;
         }
-        
+        //Display results
+        results.forEach(item =>{
+            const div = document.createElement("div");
+            div.classList.add('resultcard');
+            div.innerHTML = `<h3>${item.name}</h3>
+            <p>
+            ${item.type ?`<span>${item.type} • </span>` : ""}
+            ${item.qty ?`<span>${item.qty} • </span>` : ""}
+            ${item.stage ?`<span>Stage: ${item.stage} • </span>` : ""}
+            ${item.harvestDate ?`<span>Harvest:${item.harvestDate} • </span>` : ""}
+            ${item.category ?`<span>Category: ${item.category} • </span>` : ""}
+            ${item.stock ?`<span>Stock: ${item.stock} • </span>` : ""}
+            ${item.minLevel ?`<span>Minimum Level: ${item.minLevel} • </span>` : ""}
+            
+            </p>`;
+            resultContainer.appendChild(div);
+        })
+    } catch(err){
+        console.error("Error performing search for crops/supply:", err);
     }
 
 }
