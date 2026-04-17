@@ -25,7 +25,7 @@ async function performSearch() {
     try{
         const { crops } = await loadData();
         const { supply } = await loadData();
-        const query = document.getElementById("search-input").value.toLowercase();
+        const query = document.getElementById("search-input").value.toLowerCase();
         const checkCrops = document.getElementById("filter-crops").checked;
         const checkSupply = document.getElementById("filter-supplies").checked;
         const resultContainer = document.getElementById("search-results");
@@ -35,16 +35,16 @@ async function performSearch() {
         //Search crops if checkbox is checked
         if(checkCrops){
             const cropMatches = crops.filter(crop => 
-                crop.name.toLowercase().includes(query)
+                crop.name.toLowerCase().includes(query)
             );
-            results.push(...cropMatches.map(c =>({...c, category:"Crop"})));
+            results.push(...cropMatches.map(c =>({...c, itemCategory:"Crop"})));
         }
         //Search supply if checkbox is checked
         if(checkSupply){
             const supplyMatches = supply.filter(supply => 
-                supply.name.toLowercase().includes(query)
+                supply.name.toLowerCase().includes(query)
             );
-            results.push(...supplyMatches.map(c =>({...c, category:"Supply"})))
+            results.push(...supplyMatches.map(c =>({...c, itemCategory:"Supply"})))
         }
         //No results found 
         if(results.length === 0) {
@@ -56,7 +56,8 @@ async function performSearch() {
             const div = document.createElement("div");
             div.classList.add('resultcard');
             div.innerHTML = `<h3>${item.name}</h3>
-            <p>
+            <p style="display: flex; justify-content:space-between; background-color: red;">
+            <div>
             ${item.type ?`<span>${item.type} • </span>` : ""}
             ${item.qty ?`<span>${item.qty} • </span>` : ""}
             ${item.stage ?`<span>Stage: ${item.stage} • </span>` : ""}
@@ -64,6 +65,8 @@ async function performSearch() {
             ${item.category ?`<span>Category: ${item.category} • </span>` : ""}
             ${item.stock ?`<span>Stock: ${item.stock} • </span>` : ""}
             ${item.minLevel ?`<span>Minimum Level: ${item.minLevel} • </span>` : ""}
+            </div>
+            <div> ${item.itemCategory}</div>
             
             </p>`;
             resultContainer.appendChild(div);
