@@ -34,45 +34,47 @@
             <form class="add-supply-Form">
                  <button class="cancel" id="top-cancel-btn" onclick="this.parentElement.style.display='none'">&times;</button>
                     <h2>Add Supply</h2>
-                    <label>Crop Name</label><br>
-                    <input type="text" id="itemName" class="supply-input" placeholder="e.g. Maize" required/><br><br>
-                    <div class="add-crop-container">
+                    <label>Supply Name</label><br>
+                    <input type="text" id="itemName" class="supply-input" placeholder="e.g. NPK Fertilizer" required/><br><br>
+                    <div class="add-supply-container">
                         <div>
-                    <label>Type:</label><br>
-                     <select id="cropType" required>
-                          <option value="Cereal">Cereal</option>
-                          <option value="Grain">Grain</option>
-                          <option value="Legume">Legume</option>
-                          <option value="Fruit">Fruit</option>
-                          <option value="Vegetable">Vegetable</option>
+                    <label>Category:</label><br>
+                     <select id="supplyCategory" required>
+                          <option value="Fertilizer">Fertilizer</option>
+                          <option value="Pesticide">Pesticide</option>
+                          <option value="Seed">Seed</option>
+                          <option value="Irrigation">Irrigation</option>
+                          <option value="Equipment">Equipment</option>
+                          <option value="Other">Other</option>
                          
                     </select>
                     </div>
                     <div>
-                        <label>Quantity(kg)</label><br>
-                        <input type="number" placeholder="500" required/>
+                        <label>Unit:</label><br>
+                        <select id="unit"required>
+                            <option value="Kg">Kg</option>
+                            <option value="L">L</option>
+                            <option value="bags">bags</option>
+                            <option value="units">units</option>
+                            <option value="tons">tons</option>
+
+                        </select>
                     </div>
                     </div><br>
-                    <div class="add-crop-container">
+                    <div class="add-supply-container">
                         <div>
-                        <label>Growth Stage</label><br>
-                        <select id="growthStage" required>
-                            <option value="Seedling">Seedling</option>
-                            <option value="Vegetative">Vegetative</option>
-                            <option value="Flowering">Flowering</option>
-                            <option value="Fruiting">Fruiting</option>
-                            <option value="Harvesting">Harvesting</option>
-                        </select>
+                        <label>Current Stock:</label><br>
+                       <input type="number" id="stockValue" placeholder="500" required/>
                         </div>
                         <div>
-                            <label>Expected Harvest Date</label><br>
-                            <input type="date" placeholder="mm/dd/yyyy" required/>
+                            <label>Minimum Level(Alert)</label><br>
+                            <input type="number" placeholder="30" required/>
                         </div>
                     </div><br><br>
-                    <label>Linked Supples(optional)</label><br>
-                    <input class="crop-input" type="text" placeholder="e.g. NPK Fertilizer, Irrigation"/><br><br>
+                    <label>Notes</label><br>
+                    <input class="supply-input" type="text" placeholder="Additional notes..." required/><br><br>
                     <button class="cancel" id="close-form" onclick="this.parentElement.style.display='none'">Cancel</button>
-                    <button id="saveCrop" onclick="addCrop()">Save Crop</button>
+                    <button id="saveCrop" onclick="addCrop()">Save Supply</button>
             </form>
         </div>
         <section></section></details>
