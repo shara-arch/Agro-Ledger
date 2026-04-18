@@ -134,4 +134,14 @@
   margin-top: 1rem;
   border-radius: 10px;
 }
+.edit:hover,
+ .delete:hover{
+    background-color: rgb(133, 123, 123);
+    cursor: pointer;
+}
+.edit, .delete {
+    padding: 0.3rem;
+    border-radius: 5px;
+    border-color: white;
+}
 
