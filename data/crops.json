@@ -1,9 +1,79 @@
 {
   "crops": [
-    { "id": 1, "name": "Maize", "type": "Grain", "qty": 500, "stage": "Maturity", "harvestDate": "2026-06-15", "supplies": ["NPK Fertilizer", "Water"] },
-    { "id": 2, "name": "Beans", "type": "Legume", "qty": 200, "stage": "Flowering", "harvestDate": "2026-05-16", "supplies": ["Irrigation"] },
-    { "id": 3, "name": "Tomatoes", "type": "Fruit", "qty": 100, "stage": "Ripening", "harvestDate": "2026-04-30", "supplies": ["Pesticide", "Drip Irrigation"] },
-    { "id": 4, "name": "Kale", "type": "Vegetable", "qty": 150, "stage": "Harvest", "harvestDate": "2026-04-23", "supplies": ["Compost"] },
-    { "id": 5, "name": "Wheat", "type": "Cereal", "qty": 1200, "stage": "Seedling", "harvestDate": "2026-07-15", "supplies": ["DAP Fertilizer"] }
+    {
+      "id": 1,
+      "name": "Maize",
+      "type": "Grain",
+      "qty": 500,
+      "stage": "Maturity",
+      "harvestDate": "2026-06-15",
+      "supplies": [
+        "NPK Fertilizer",
+        "Water"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Beans",
+      "type": "Legume",
+      "qty": 200,
+      "stage": "Flowering",
+      "harvestDate": "2026-05-16",
+      "supplies": [
+        "Irrigation"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Tomatoes",
+      "type": "Fruit",
+      "qty": 100,
+      "stage": "Ripening",
+      "harvestDate": "2026-04-30",
+      "supplies": [
+        "Pesticide",
+        "Drip Irrigation"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Kale",
+      "type": "Vegetable",
+      "qty": 150,
+      "stage": "Harvest",
+      "harvestDate": "2026-04-23",
+      "supplies": [
+        "Compost"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Wheat",
+      "type": "Cereal",
+      "qty": 1200,
+      "stage": "Seedling",
+      "harvestDate": "2026-07-15",
+      "supplies": [
+        "DAP Fertilizer"
+      ]
+    },
+    {
+      "id": 1776554718517,
+      "name": "Strawberries",
+      "type": "Fruit",
+      "qty": "700",
+      "stage": "Fruiting",
+      "harvestDate": "2026-05-07",
+      "cropSupplies": "Irrigation"
+    },
+    {
+      "id": 1776554767953,
+      "name": "Strawberries",
+      "type": "Fruit",
+      "qty": "698",
+      "stage": "Fruiting",
+      "harvestDate": "2026-04-30",
+      "cropSupplies": "Irrigation"
+    }
   ]
 }
