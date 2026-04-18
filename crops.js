@@ -71,7 +71,7 @@ async function renderSupply() {
     container.innerHTML="";
 
     if (!supply || supply.length === 0) {
-      container.innerHTML = "<tr><td colspan='7'>No supply found.</td></tr>";
+      container.innerHTML = "<tr><td colspan='8 >No supply found.</td></tr>";
       return;
     }
 
