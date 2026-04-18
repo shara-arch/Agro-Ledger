@@ -1,13 +1,15 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const cors = require("cors");
 
 const app = express();
 app.use(express.json()); // parse JSON request bodies
+app.use(cors());
 
 // File paths
 const cropsFile = path.join(__dirname, 'data', 'crops.json');
-const suppliesFile = path.join(__dirname, 'data', 'supplies.json');
+const supplyFile = path.join(__dirname, 'data', 'supply.json');
 
 // Helper functions
 function loadData(file) {
@@ -18,6 +20,11 @@ function saveData(file, data) {
 }
 
 // --- Crops API ---
+app.get('/api/crops', (req, res) => {
+  const data = loadData(cropsFile);
+  res.json(data);
+});
+
 app.post('/api/crops', (req, res) => {
   const data = loadData(cropsFile);
   const newCrop = { id: Date.now(), ...req.body };
@@ -26,13 +33,21 @@ app.post('/api/crops', (req, res) => {
   res.status(201).json(newCrop);
 });
 
-// --- Supplies API ---
-app.post('/api/supplies', (req, res) => {
-  const data = loadData(suppliesFile);
+// --- Supply API ---
+app.get('/api/supply', (req, res) => {
+  const data = loadData(supplyFile);
+  res.json(data);
+});
+
+app.post('/api/supply', (req, res) => {
+  const data = loadData(supplyFile);
   const newSupply = { id: Date.now(), ...req.body };
-  data.supplies.push(newSupply);
-  saveData(suppliesFile, data);
+  data.supply.push(newSupply);
+  saveData(supplyFile, data);
   res.status(201).json(newSupply);
 });
 
 app.listen(3000, () => console.log('API running on http://localhost:3000'));
+
+
+// supplies

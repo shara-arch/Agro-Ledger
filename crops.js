@@ -71,7 +71,7 @@ async function renderSupply() {
     container.innerHTML="";
 
     if (!supply || supply.length === 0) {
-      container.innerHTML = "<tr><td colspan='8 >No supply found.</td></tr>";
+      container.innerHTML = "<tr><td colspan='8'>No supply found.</td></tr>";
       return;
     }
 
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  form.addEventListener("submit", function(event) {
+  form.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const name = document.getElementById("itemName").value.trim(); // trim whitespace
@@ -178,24 +178,26 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please complete all supply fields with valid values.");
       return;
     }
-
-    const id = supply.length + 1;
-    //Add supply to array
-    supply.push({
-      id,
-      name,
-      category,
-      stock,
-      unit,
-      minLevel,
-      notes
+    try {
+    const response = await fetch("http://localhost:3000/api/supply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, category, stock, unit, minLevel, notes })
     });
+
+     if (!response.ok) throw new Error(`Server error: ${response.status}`);
+
+    const newItem = await response.json();
+    alert(`${newItem.name} has been added`);
+    form.reset();
 
     //refresh UI
     renderSupply();
-    //Success Message
-    alert(`${name} has been added!`);
-    //Reset Form
-    form.reset();
-  });
+  } catch (err) {
+    console.error("Save failed", err);
+    alert(`Error saving supply: ${err.message}`);
+  };
 });
+});
+
+// supplies
