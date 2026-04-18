@@ -40,16 +40,19 @@ async function renderCrops() {
       container.innerHTML = "<tr><td colspan='6'>No crops found.</td></tr>";
       return;
     }
-
+   
     crops.forEach(crop =>{
         const row = document.createElement("tr");
-
+        const harvestDate = new Date(crop.harvestDate);
+        const today = new Date();
+        const diffTime = harvestDate - today;
+        const daysRemainingToHarvest = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       row.innerHTML = `
         <td>${crop.name}</td>
         <td>${crop.type}</td>
         <td>${crop.qty} kg</td>
         <td>${crop.stage}</td>
-        <td>${crop.harvestDate}</td>
+        <td>${crop.harvestDate} <span id="daysRemainingToHarvest">(${daysRemainingToHarvest}d)</span></td>
         <td><button class="edit">✏️</button> <button class="delete"> 🗑️</button> </td>
       `;
       container.appendChild(row);
