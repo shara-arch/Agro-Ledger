@@ -61,3 +61,59 @@
 #daysRemainingToHarvest{
     font-size: small;
 }
+@media (max-width: 480px) {
+ 
+  .search {
+    padding: 0.8rem;
+  }
+ 
+  .search input[type="text"],
+  .search-input {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+ 
+  .search-card {
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+ 
+  /* Checkbox filter labels */
+  .search-card label {
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 10px;
+  }
+ 
+  .search-results {
+    margin: 0.5rem 0;
+  }
+ 
+  .search-results div {
+    flex-direction: column;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+  }
+ 
+  .search-results h3 {
+    font-size: 0.95rem;
+  }
+ 
+  .search-results p {
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+ 
+  #itemCategory {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+  }
+ 
+  #daysRemainingToHarvest {
+    font-size: 0.72rem;
+  }
+}

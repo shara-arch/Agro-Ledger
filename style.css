@@ -241,7 +241,7 @@ hr {
   }
 
   .summary {
-    grid-template-columns: 1fr;       /* stack summary sections */
+    grid-template-columns: 1fr;       
     gap: 1rem;
   }
 
