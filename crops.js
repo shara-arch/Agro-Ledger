@@ -67,7 +67,7 @@ async function renderSupply() {
     try {
         const container = document.querySelector("#supplyTableBody");
     if (!container) {
-      console.error("Container #supplyList not found");
+      console.error("Container #supplyTableBody not found");
       return;
     }
 
