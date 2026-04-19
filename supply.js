@@ -15,7 +15,7 @@ async function loadData() {
     
     return { crops, supply };
 }catch (err){
-     console.error("Error loading data", err);
+     console.error("(supply.js)Error loading data", err);
      supply = [];
      return { supply: [] }; // fallback
 }
@@ -58,7 +58,7 @@ function renderSupply() {
         container.appendChild(row);
     });
     } catch(err){
-        console.error(`Error rendering Supply Table`, err);
+        console.error(`(supply.js)Error rendering Supply Table`, err);
     }
 }
 document.addEventListener("DOMContentLoaded",renderSupply);
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //refresh UI
     renderSupply();
   } catch (err) {
-    console.error("Save failed", err);
+    console.error("(supply.js)Save failed", err);
     alert(`Error saving supply: ${err.message}`);
   };
 });
