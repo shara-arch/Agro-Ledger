@@ -16,11 +16,19 @@ const supplyFile = path.join(__dirname, 'data', 'supply.json');
 
 // Helper functions
 function loadData(file) {
+  try{
   return JSON.parse(fs.readFileSync(file, 'utf-8'));
-}
+}catch(err){
+  console.error(`[server.js]Failed to read ${file}:`, err.message);
+  throw new Error ("Couldn't read data file.");
+}}
 function saveData(file, data) {
+  try {
   fs.writeFileSync(file, JSON.stringify(data, null, 2));
-}
+  }catch(err){
+  console.error(`[server.js] Failed to write ${file}:`, err.message);
+  throw new Error('Could not write data file.');
+}}
 
 // --- Crops API ---
 app.get('/api/crops', (req, res) => {
