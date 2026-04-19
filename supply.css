@@ -193,13 +193,13 @@
         padding: 0;
     }
     .btns{
-    padding: 0;
-    width: 8rem;
+    padding: 0 0.5rem;
+    width: 15rem;
     display: flex;
     justify-content: space-between;
+   
     }
     
- 
     .supplyForm {
         justify-content: flex-start;
     }

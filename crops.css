@@ -175,6 +175,12 @@
     grid-template-columns: 100px 150px 1fr 1fr;
     column-gap: 10px;
   }
+  .btns{
+    padding: 0 0.5rem;
+    width: 15rem;
+    display: flex;
+    justify-content: space-between;
+    }
  
   .add-crop-container input,
   .add-crop-container select {
