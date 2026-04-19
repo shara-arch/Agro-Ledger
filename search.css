@@ -65,7 +65,7 @@
 @media (max-width: 480px) {
  
   .search {
-    padding: 0.8rem;
+    padding: 1rem;
   }
  
   .search input[type="text"],
@@ -82,7 +82,7 @@
   /* Checkbox filter labels */
   .search-card label {
     font-size: 0.85rem;
-    display: inline-flex;
+    display: inline;
     align-items: center;
     gap: 4px;
     margin-right: 10px;
@@ -116,6 +116,9 @@
  
   #daysRemainingToHarvest {
     font-size: 0.72rem;
+  }
+  .search-btn{
+    display: none;
   }
 }
 @media (max-width: 768px) {

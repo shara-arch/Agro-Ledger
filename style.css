@@ -166,88 +166,70 @@ hr {
 /* Responsive design */
 /* Phone view adjustments */
 @media (max-width: 480px) {
-  body {
-    overflow-x: hidden;    
-    
-  }
-
-  .side-panel {
-    width: 5rem;                 
-    padding: 10px 5px;
-    height: 100vh;            
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .side-panel a {
-    font-size: 0.75rem;
-    padding: 6px 0;
-    text-align: center;
-    font-size: 0.7rem;
-  }
-  .side-panel h2{
-    display: none;
-  }
-
-  .user-details {
-    margin-top: auto;            
-    padding: 8px;
-    border-top: 1px solid #ccc;
-    display: flex;
-    justify-content: center;
-  }
-
-  .user-details button {
-    width: 100%;                  
-    font-size: 0.85rem;
-    padding: 0.6rem;
-    display: block;
-  }
-
-  .dashboard, .search, .supply, .crops {
-    margin-left: 5rem;            
-    padding: 1.5rem;
-    width: calc(100% - 5rem);     
-  }
-
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-  }
-
-  .notif-bell {
-    padding: 0.2rem 0.5rem;
-    border-radius: 8px;
-  }
-
  
+  .side-panel {
+    padding: 10px 12px;
+    width: 7rem;
+  }
+ 
+  .side-panel h2 {
+    font-size: 0.9rem;
+    width: 100%;
+    margin-bottom: 4px;
+  }
+ 
+  .side-panel a {
+    padding: 5px 8px;
+    font-size: 0.72rem;
+  }
+ 
+  .side-panel a.active {
+    padding: 5px 8px;
+    font-size: 0.72rem;
+  }
+ 
+  .dashboard, .search, .crops, .supply {
+    padding: 0.8rem;
+    margin-left: 8rem;
+    margin-right: 0.1rem;
+  }
   .overview-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;   /* two columns */
-    grid-template-rows: auto auto;    /* two rows */
+    grid-template-columns: 1fr 1fr;  
+    grid-template-rows: auto auto;
     gap: 1rem;
     padding: 1rem;
-    height: rem;
   }
-
   .overview-card {
-    margin: 0;
-    padding: 0 0.1rem 0;
-    text-align: center;
-    font-size: 0.6rem;
+    flex: 1 1 100%;
+    margin: 0.4rem 0;
+    padding: 0.4rem;
   }
-
+ 
+  .overview-card span {
+    font-size: 1.3rem;
+  }
+ 
+  header {
+    flex-direction: column;
+    gap: 8px;
+  }
+ 
+  .notif-bell {
+    align-self: flex-end;
+  }
+ 
+  h1 {
+    font-size: 1.4rem;
+  }
+ 
   .summary {
-    grid-template-columns: 1fr;       
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
   }
-
-  .recent-crop-card p, .supply-status-card p {
-    font-size: 0.8rem;
-    padding: 0.7rem;
+ 
+  .item-list {
+    border-radius: 12px;
   }
 }
 

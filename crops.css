@@ -134,3 +134,70 @@
     border-radius: 5px;
     border-color: white;
 }
+/* Responsive media */
+@media (max-width: 480px) {
+ 
+  .crops {
+    padding: 0.8rem;
+  }
+ 
+  .crops header h1 {
+    font-size: 1.3rem;
+  }
+ 
+  .crops #add-crop-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+ 
+  .add-crop-Form {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+  }
+ 
+  /* Stack form fields vertically on small screens */
+  .add-crop-container {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+ 
+  .add-crop-container input,
+  .add-crop-container select {
+    width: 100%;
+  }
+ 
+  .cropForm {
+    justify-content: flex-start;
+  }
+ 
+  /* Wrap action buttons side by side */
+  #close-form,
+  #saveCrop {
+    width: 48%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+ 
+  /* Keep table scrollable on tiny screens */
+  .crops-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+ 
+  .crops-table table {
+    max-width: 500px;
+  }
+ 
+  .crops-table th,
+  .crops-table td {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
