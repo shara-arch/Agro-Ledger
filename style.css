@@ -137,6 +137,10 @@ header {
     opacity: 0.7;
 
 }
+#notifList p{
+    font-weight: bold;
+    color: black;
+}
 hr {
     text-decoration-line: none;
 }

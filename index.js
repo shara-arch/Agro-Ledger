@@ -136,7 +136,7 @@ async function displayNotif() {
     //--------------------------------------------------------------------
     lowStock.forEach(item => {
         const p = document.createElement("p");
-        p.textContent = `${item.name}: only ${item.stock}${item.unit} remaining.`;
+        p.textContent = `⚠️${item.name}: only ${item.stock}${item.unit} remaining.`;
         container.appendChild(p);
         
     });
