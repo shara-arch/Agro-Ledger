@@ -1,28 +1,24 @@
 //Load data 
 //File paths
 const cropsFile = "data/crops.json";
-const supplyFile = "data/supply.json";
 
 let crops = [];
-let supply = [];
+
 
 //Load data
 async function loadData() {
     try{
     const cropsRes = await fetch(cropsFile);
     const cropsData = await cropsRes.json();
-    const supplyRes = await fetch(supplyFile);
-    const supplyData = await supplyRes.json();
-    
+ 
     crops = cropsData.crops || [];
-    supply = supplyData.supply || [];
+
     
-    return { crops, supply };
+    return { crops, };
 }catch (err){
-     console.error("Error loading data", err);
+     console.error("[crops.js]Error loading data", err);
      crops = [];
-     supply = [];
-     return { crops: [], supply: [] }; // fallback
+     return { crops: [] }; // fallback
 }
 }
 //renderCrops
@@ -37,12 +33,13 @@ async function renderCrops() {
     container.innerHTML="";
 
     if (!crops || crops.length === 0) {
-      container.innerHTML = "<tr><td colspan='6'>No crops found.</td></tr>";
+      container.innerHTML = "<tr><td colspan='6' style='text-align:center;padding:1rem'>No crops found. Click ➕ Add Crop to get started.</td></tr>";
       return;
     }
    
     crops.forEach(crop =>{
         const row = document.createElement("tr");
+        //days rem to harvest
         const harvestDate = new Date(crop.harvestDate);
         const today = new Date();
         const diffTime = harvestDate - today;
@@ -117,8 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Tthis function will be used to delete crops 
 async function deleteCrop(id) {
-  const c = crops.find(c => c.id === id);
-  if (!c || !confirm(`Remove "${c.name}" from the ledger?`)) return;
+  const numericId = Number(id);
+ 
+  const crop = crops.find(c => c.id === numericId);
+  if (!crop || !confirm(`Remove "${crop.name}" from the ledger?`)) return;
 
   try {
     // Call backend to delete crop

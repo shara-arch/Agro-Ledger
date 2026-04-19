@@ -133,8 +133,8 @@ async function deleteSupply(id) {
   if (!confirm(`Remove "${item.name}" from the ledger?`)) return;
 
   try {
-    // Call backend to delete crop
-    const res = await fetch(`http://localhost:3000/api/supply/${id}`, {
+    // Call backend to delete supply item
+    const res = await fetch(`http://localhost:3000/api/supply/${numericId}`, {
       method: "DELETE"
     });
 
