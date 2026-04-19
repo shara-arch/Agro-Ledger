@@ -10,10 +10,9 @@ async function loadData() {
     const supplyRes = await fetch(supplyFile);
     const supplyData = await supplyRes.json();
     
-    crops = cropsData.crops || [];
     supply = supplyData.supply || [];
     
-    return { crops, supply };
+    return { supply };
 }catch (err){
      console.error("(supply.js)Error loading data", err);
      supply = [];
@@ -53,7 +52,7 @@ function renderSupply() {
             <td class="${supplyStatus === "In Stock" ? "status-in-stock" : "status-low"}">${supplyStatus}</td>
             <td>${item.notes || ""}</td>
             <td >
-              <button class="delete" onclick="deleteCrop(${item.id})" title="Delete Supply Item">🗑️</button>
+              <button class="delete" onclick="deleteSupply(${item.id})" title="Delete Supply Item">🗑️</button>
             </td>`;
         container.appendChild(row);
     });
@@ -61,7 +60,7 @@ function renderSupply() {
         console.error(`(supply.js)Error rendering Supply Table`, err);
     }
 }
-document.addEventListener("DOMContentLoaded",renderSupply);
+// document.addEventListener("DOMContentLoaded",renderSupply);
 
 // Load data and render initially
 loadData()
@@ -153,3 +152,8 @@ async function deleteSupply(id) {
     alert(`Error deleting supply: ${err.message} \n\nMake sure the server is running (node server.js).`);
   }
 }
+//add event listeners
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadData();
+  renderSupply();
+});
