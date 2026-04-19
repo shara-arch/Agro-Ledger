@@ -126,12 +126,12 @@ async function deleteSupply(id) {
   const numericId = Number(id);
   const item = supply.find(s => s.id === numericId);
   if (!item) {
-    console.warn(`[supply.js] deleteSupply: no item with id ${numericId} found in local state`);
+    console.warn(`(supply.js) deleteSupply: no item with id ${numericId} found in local state`);
     alert("Item not found. Please refresh the page.");
     return;
   }
 
-  if (!s || !confirm(`Remove "${s.name}" from the ledger?`)) return;
+  if (!confirm(`Remove "${item.name}" from the ledger?`)) return;
 
   try {
     // Call backend to delete crop
@@ -142,14 +142,14 @@ async function deleteSupply(id) {
     if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
     // Update local state
-    supply = supply.filter(supply => supply.id !== id);
+    supply = supply.filter(s => s.id !== numericId);
 
     // Refresh UI
     renderSupply();
 
     alert(`${s.name} removed.`);
   } catch (err) {
-    console.error("Delete failed", err);
-    alert(`Error deleting supply: ${err.message}`);
+    console.error("(supply.js)Delete failed", err);
+    alert(`Error deleting supply: ${err.message} \n\nMake sure the server is running (node server.js).`);
   }
 }
