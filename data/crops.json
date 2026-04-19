@@ -74,6 +74,33 @@
       "stage": "Fruiting",
       "harvestDate": "2026-04-30",
       "cropSupplies": "Irrigation"
+    },
+    {
+      "id": 1776570185925,
+      "name": "Carrots",
+      "type": "Vegetable",
+      "qty": "350",
+      "stage": "Seedling",
+      "harvestDate": "2026-08-01",
+      "cropSupplies": "Compost, Irrigation"
+    },
+    {
+      "id": 1776570401860,
+      "name": "Sunflowers",
+      "type": "Grain",
+      "qty": "600",
+      "stage": "Vegetative",
+      "harvestDate": "2026-07-20",
+      "cropSupplies": "NPK Fertilizer"
+    },
+    {
+      "id": 1776570493570,
+      "name": "Onions",
+      "type": "Vegetable",
+      "qty": "400",
+      "stage": "Flowering",
+      "harvestDate": "2026-06-25",
+      "cropSupplies": "DAP Fertilizer, Irrigation"
     }
   ]
 }

@@ -116,6 +116,33 @@
       "unit": "bags",
       "minLevel": 20,
       "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
+    },
+    {
+      "id": 1776570589274,
+      "name": "Herbicide",
+      "category": "Pesticide",
+      "stock": 60,
+      "unit": "L",
+      "minLevel": 15,
+      "notes": "Weed control for cereals"
+    },
+    {
+      "id": 1776570660133,
+      "name": "Greenhouse Kit",
+      "category": "Equipment",
+      "stock": 5,
+      "unit": "units",
+      "minLevel": 2,
+      "notes": "For tomato and strawberry crops"
+    },
+    {
+      "id": 1776570723126,
+      "name": "Organic Mulch",
+      "category": "Other",
+      "stock": 300,
+      "unit": "Kg",
+      "minLevel": 500,
+      "notes": "Moisture retention for vegetables"
     }
   ]
 }
