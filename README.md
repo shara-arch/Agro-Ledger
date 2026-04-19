@@ -7,9 +7,7 @@
  A lightweight, browser-based farm management tool that helps smallholder farmers track crops, monitor supply stock, receive low-stock alerts, and plan ahead — all without needing a smartphone app or internet connection beyond a local server.
 
 </div>
----
-## Link to Live Site:
-https://shara-arch.github.io/Agr-Ledger/
+
 ---
 
 ## 📋 Table of Contents
@@ -31,7 +29,9 @@ https://shara-arch.github.io/Agr-Ledger/
 - [License](#-license)
 
 ---
-
+## Link to Live Site:
+https://shara-arch.github.io/Agro-Ledger/
+---
 ## 🌱 Project Description
 
 ### What it does
