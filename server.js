@@ -76,7 +76,23 @@ app.post('/api/supply', (req, res) => {
   res.status(201).json(newSupply);
 });
 
-
+pp.delete('/api/supply/:id', (req, res) => {
+  try {
+    const id   = Number(req.params.id);
+    const data = loadData(supplyFile);
+    const idx  = data.supply.findIndex(s => s.id === id);
+ 
+    if (idx === -1) {
+      return res.status(404).json({ error: `Supply item with id ${id} not found.` });
+    }
+ 
+    const [removed] = data.supply.splice(idx, 1);
+    saveData(supplyFile, data);
+    res.json({ message: `Supply "${removed.name}" deleted.`, id });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 app.listen(3000, () => console.log('API running on http://localhost:3000'));
