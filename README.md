@@ -1,5 +1,5 @@
 # Agro-Ledger
-<div align="center">
+<div>
 
 ### *Smart Farm Inventory Management*
 
@@ -7,7 +7,9 @@
  A lightweight, browser-based farm management tool that helps smallholder farmers track crops, monitor supply stock, receive low-stock alerts, and plan ahead — all without needing a smartphone app or internet connection beyond a local server.
 
 </div>
-
+---
+## Link to Live Site:
+https://shara-arch.github.io/Agr-Ledger/
 ---
 
 ## 📋 Table of Contents
@@ -61,7 +63,7 @@ Smallholder farmers in Kenya and across sub-Saharan Africa often manage complex 
 
 | Name | Role | Contact Info |
 |---|---|---|
-| **Shara** | Creator & Lead Developer | (email)sharamoegiAgmail.com |
+| **Shara** | Creator & Lead Developer | (email)sharamoegi@gmail.com |
 >
 
 ---
