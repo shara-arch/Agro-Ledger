@@ -1,16 +1,12 @@
 //Load data 
-//File paths
-const cropsFile = "data/crops.json";
+//File paths(used for iniitial GET Fetch)
 const supplyFile = "data/supply.json";
 
-let crops = [];
 let supply = [];
 
 //Load data
 async function loadData() {
     try{
-    const cropsRes = await fetch(cropsFile);
-    const cropsData = await cropsRes.json();
     const supplyRes = await fetch(supplyFile);
     const supplyData = await supplyRes.json();
     
@@ -20,13 +16,12 @@ async function loadData() {
     return { crops, supply };
 }catch (err){
      console.error("Error loading data", err);
-     crops = [];
      supply = [];
-     return { crops: [], supply: [] }; // fallback
+     return { supply: [] }; // fallback
 }
 }
 //Function to render supply
-async function renderSupply() {
+function renderSupply() {
     try {
         const container = document.querySelector("#supplyTableBody");
     if (!container) {
@@ -37,7 +32,7 @@ async function renderSupply() {
     container.innerHTML="";
 
     if (!supply || supply.length === 0) {
-      container.innerHTML = "<tr><td colspan='8'>No supply found.</td></tr>";
+      container.innerHTML = "<tr><td colspan='8' style='text-align:center;padding:1rem'>No items found. ➕ Add Supply to get started.</td></tr>";
       return;
     }
 
@@ -48,22 +43,22 @@ async function renderSupply() {
         const supplyStatus = item.stock > item.minLevel ? "In Stock" : "Low stock";
         const row = document.createElement("tr");
         row.classList.add("supply-status-card");
-
+          //
           row.innerHTML = `
-            <td>${item.name}</td>
-            <td>${item.category}</td>
+            <td>${escapeHtml(item.name)}</td>
+            <td>${escapeHtml(item.category)}</td>
             <td>${item.stock}</td>
-            <td>${item.unit}</td>
+            <td>${escapeHtml(item.unit)}</td>
             <td>${item.minLevel}</td>
             <td class="${supplyStatus === "In Stock" ? "status-in-stock" : "status-low"}">${supplyStatus}</td>
-            <td>${item.notes || ""}</td>
+            <td>${escapeHtml(item.notes || "")}</td>
             <td >
-              <button class="delete" onclick="deleteCrop(${item.id})">🗑️</button>
+              <button class="delete" onclick="deleteCrop(${item.id})" title="Delete Supply Item">🗑️</button>
             </td>`;
         container.appendChild(row);
     });
     } catch(err){
-        console.error(`Error rendering Supply Status`, err);
+        console.error(`Error rendering Supply Table`, err);
     }
 }
 document.addEventListener("DOMContentLoaded",renderSupply);
