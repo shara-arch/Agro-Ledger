@@ -115,14 +115,22 @@ document.addEventListener("DOMContentLoaded", () => {
     renderSupply();
   } catch (err) {
     console.error("(supply.js)Save failed", err);
-    alert(`Error saving supply: ${err.message}`);
+    alert(`Error saving supply: ${err.message}\n\n Make sure the server is running (node server.js)`);
   };
 });
 });
 
 //Tthis function will be used to delete crops 
 async function deleteSupply(id) {
-  const s = supply.find(s => s.id === id);
+//Coerce to number
+  const numericId = Number(id);
+  const item = supply.find(s => s.id === numericId);
+  if (!item) {
+    console.warn(`[supply.js] deleteSupply: no item with id ${numericId} found in local state`);
+    alert("Item not found. Please refresh the page.");
+    return;
+  }
+
   if (!s || !confirm(`Remove "${s.name}" from the ledger?`)) return;
 
   try {
