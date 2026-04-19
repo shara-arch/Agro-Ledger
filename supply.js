@@ -45,13 +45,13 @@ function renderSupply() {
         row.classList.add("supply-status-card");
           //
           row.innerHTML = `
-            <td>${escapeHtml(item.name)}</td>
-            <td>${escapeHtml(item.category)}</td>
+            <td>${item.name}</td>
+            <td>${item.category}</td>
             <td>${item.stock}</td>
-            <td>${escapeHtml(item.unit)}</td>
+            <td>${item.unit}</td>
             <td>${item.minLevel}</td>
             <td class="${supplyStatus === "In Stock" ? "status-in-stock" : "status-low"}">${supplyStatus}</td>
-            <td>${escapeHtml(item.notes || "")}</td>
+            <td>${item.notes || ""}</td>
             <td >
               <button class="delete" onclick="deleteCrop(${item.id})" title="Delete Supply Item">🗑️</button>
             </td>`;
@@ -104,6 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
      if (!response.ok) throw new Error(`Server error: ${response.status}`);
 
     const newItem = await response.json();
+     // Update local state immediately (no extra fetch needed)
+     supply.push(newItem);
     alert(`${newItem.name} has been added`);
     form.reset();
 
