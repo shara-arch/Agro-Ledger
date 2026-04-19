@@ -8,7 +8,7 @@ body{
 }
 .side-panel {
     width: 20rem;
-    background-color: #828E82;
+    background-color: #3A606E;
     color: white;
     min-height: 100vh;
     padding: 20px;
@@ -32,7 +32,7 @@ body{
   border-radius: 10px ;
 }
 .user-details button{
-    background-color: #3A606E;
+    background-color: #6e443a;
     padding: 0.7rem 2rem;
     border-radius: 10px;
     border-color: #828E82;
@@ -40,9 +40,10 @@ body{
     font-weight: 400;
 }
 .user-details button:hover{
-    background-color: rgb(196, 42, 42);
+    background-color: rgb(231, 53, 53);
     opacity:0.7;
     border-color: black;
+    cursor: pointer;
 }
 .dashboard{
     padding: 3rem;
@@ -135,4 +136,7 @@ header {
     border-color: red;
     
 
+}
+hr {
+    text-decoration-line: none;
 }
