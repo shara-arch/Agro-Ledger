@@ -108,7 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
      supply.push(newItem);
     alert(`${newItem.name} has been added`);
     form.reset();
-
+    // Close the <details> element 
+    const details = form.closest("details")
+    if (details) details.open = false;
     //refresh UI
     renderSupply();
   } catch (err) {
