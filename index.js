@@ -215,3 +215,17 @@ async function renderSupplyStatus() {
     }
 }
 renderSupplyStatus();
+
+//Styling to switch active class
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll(".side-panel a");
+
+  links.forEach(link => {
+    link.addEventListener("click", function() {
+      // remove active from all links
+      links.forEach(l => l.classList.remove("active"));
+      // add active to the clicked link
+      this.classList.add("active");
+    });
+  });
+});
