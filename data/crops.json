@@ -92,6 +92,15 @@
       "stage": "Flowering",
       "harvestDate": "2026-06-25",
       "cropSupplies": "DAP Fertilizer, Irrigation"
+    },
+    {
+      "id": 1776622316032,
+      "name": "Mangoes",
+      "type": "Fruit",
+      "qty": 1000,
+      "stage": "Seedling",
+      "harvestDate": "2026-08-26",
+      "supplies": []
     }
   ]
 }
