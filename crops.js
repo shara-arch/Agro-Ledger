@@ -75,7 +75,7 @@ loadData()
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("add-crop-Form");
   if (!form) {
-    console.error("Form #add-crop-Form not found");
+    console.error("[crops,js]Form #add-crop-Form not found");
     return;
   }
 
@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const harvestDate = document.getElementById("expectedHarvestDate").value;
   const cropSupplies = document.getElementById("cropSupplies").value.trim();
 
-    const suppliesArray = cropSupplies
-      ? cropSupplies.split(",").map(item => item.trim()).filter(item => item)
+    const supplies = cropSupplies
+      ? cropSupplies.split(",").map(item => item.trim()).filter(Boolean)
       : [];
 
   
@@ -98,8 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const res = await fetch("http://localhost:3000/api/crops", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, type, qty, stage, harvestDate, cropSupplies })
+      body: JSON.stringify({ name, type, qty, stage, harvestDate, supplies })
     });
+    
       const newItem = await res.json();
     alert(`${newItem.name} has been added`);
     form.reset();  
