@@ -43,6 +43,24 @@ app.post('/api/crops', (req, res) => {
   saveData(cropsFile, data);
   res.status(201).json(newCrop);
 });
+//delete crop by id
+app.delete('/api/crops/:id', (req, res) => {
+  try {
+    const id   = Number(req.params.id);
+    const data = loadData(cropsFile);
+    const idx  = data.crops.findIndex(c => c.id === id);
+ 
+    if (idx === -1) {
+      return res.status(404).json({ error: `Crop with id ${id} not found.` });
+    }
+ 
+    const [removed] = data.crops.splice(idx, 1);
+    saveData(cropsFile, data);
+    res.json({ message: `Crop "${removed.name}" deleted.`, id });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // --- Supply API ---
 app.get('/api/supply', (req, res) => {
@@ -57,6 +75,9 @@ app.post('/api/supply', (req, res) => {
   saveData(supplyFile, data);
   res.status(201).json(newSupply);
 });
+
+
+
 
 app.listen(3000, () => console.log('API running on http://localhost:3000'));
 
