@@ -53,7 +53,7 @@ async function renderCrops() {
         <td>${crop.qty} kg</td>
         <td>${crop.stage}</td>
         <td>${crop.harvestDate} <span id="daysRemainingToHarvest">(${daysRemainingToHarvest}d)</span></td>
-        <td><button class="edit">✏️</button> <button class="delete"> 🗑️</button> </td>
+        <td><button class="delete" onclick="deleteCrop(${crop.id})"> 🗑️</button> </td>
       `;
       container.appendChild(row);
     })
@@ -95,8 +95,7 @@ async function renderSupply() {
             <td class="${supplyStatus === "In Stock" ? "status-in-stock" : "status-low"}">${supplyStatus}</td>
             <td>${item.notes || ""}</td>
             <td >
-              <button class="edit">✏️</button>
-              <button class="delete">🗑️</button>
+              <button class="delete" onclick="deleteCrop(${c.id})">🗑️</button>
             </td>`;
         container.appendChild(row);
     });
@@ -201,4 +200,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 });
 
-// supplies
+//Tthis function will be used to delete crops 
+async function deleteCrop(id) {
+  const c = crops.find(c => c.id === id);
+  if (!c || !confirm(`Remove "${c.name}" from the ledger?`)) return;
+
+  try {
+    // Call backend to delete crop
+    const res = await fetch(`http://localhost:3000/api/crops/${id}`, {
+      method: "DELETE"
+    });
+
+    if (!res.ok) throw new Error(`Server error: ${res.status}`);
+
+    // Update local state
+    crops = crops.filter(crop => crop.id !== id);
+
+    // Refresh UI
+    renderCrops();
+
+    alert(`${c.name} removed.`);
+  } catch (err) {
+    console.error("Delete failed", err);
+    alert(`Error deleting crop: ${err.message}`);
+  }
+}
+
