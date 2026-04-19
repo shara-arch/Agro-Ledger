@@ -26,7 +26,7 @@
     background-color: #E0E0E0;
 }
 .search-card {
-    background-color: #AAAE8E;
+    
     padding: 1rem;
     width: 100%;
     border-radius: 10px;
@@ -41,21 +41,23 @@
     justify-content: space-between;
     width: 100%;
 }
-.result-container {
-     
+.result-container {  
     width: 50%;
 }
 #itemCategory {
     display: inline-block;
     justify-self: end;
-    background-color: #3A606E;
+    background-color: #607B7D;
     max-width: fit-content;
     border-radius:30px;
     padding: 0.5rem;
-    opacity: 0.8;
     max-height: min-content;
     color: white;
+    font-weight: bold;
 }
 .search-results {
     margin: 1rem;
+}
+#daysRemainingToHarvest{
+    font-size: small;
 }

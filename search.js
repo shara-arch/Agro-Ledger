@@ -54,6 +54,10 @@ async function performSearch() {
         //Display results
         results.forEach(item =>{
             const div = document.createElement("div");
+            const harvestDate = new Date(item.harvestDate);
+            const today = new Date();
+            const diffTime = harvestDate - today;
+            const daysRemainingToHarvest = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             div.classList.add("resultcard");
             div.innerHTML = `<section class="result-container"><h3>${item.name}</h3>
             <p>
@@ -61,7 +65,7 @@ async function performSearch() {
             ${item.type ?`<span>${item.type} • </span>` : ""}
             ${item.qty ?`<span>${item.qty} • </span>` : ""}
             ${item.stage ?`<span>Stage: ${item.stage} • </span>` : ""}
-            ${item.harvestDate ?`<span>Harvest:${item.harvestDate}  </span>` : ""}
+            ${item.harvestDate ?`<span>Harvest:${item.harvestDate}<span id="daysRemainingToHarvest"> (${daysRemainingToHarvest}d)</span>  </span>` : ""}
             ${item.category ?`<span>Category: ${item.category} • </span>` : ""}
             ${item.stock ?`<span>Stock: ${item.stock} • </span>` : ""}
             ${item.minLevel ?`<span>Minimum Level: ${item.minLevel}  </span>` : ""}</p>

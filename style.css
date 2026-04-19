@@ -57,13 +57,17 @@ nav {
 .overview-container {
     display: flex;
     justify-content: space-between;
+    background-color: rgb(247, 245, 245);
+    border-radius: 20px;
+    opacity: 0.8;
 }
 .overview-card {
     margin: 2rem;
-    background-color: #AAAE8E;
+    background-color: #607B7D;
     padding: 1rem 8rem 1rem 1rem;
     border-radius: 10px;
-    font-weight: 500;    
+    font-weight: bold;    
+    
 }
 .overview-card span {
     font-family: 'Times New Roman', Times, serif;
@@ -76,21 +80,22 @@ header {
 .notif-bell{
     background-color: white;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 0rem 0.5rem;
     border-color: #E0E0E0;
     display: flex;
     justify-self: end;
 }
 .notif-bell span {
-    background-color: red;
-    color: white;
+    font-weight: bold;
+    color: red;
     font-weight: 800;
     padding: 0.1rem;
-    border-radius: 100%;
+    
     
 }
-.notif-bell button:hover {
+.notif-bell:hover {
     cursor: pointer;
+    background-color: rgb(195, 191, 191);
 }
 .notif-panel.active{
     background-color: red;
