@@ -14,7 +14,9 @@ body{
     padding: 20px;
     display: flex;
     flex-direction: column;
-    /* position: fixed; */
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 .side-panel a {
     display: block;
@@ -50,9 +52,10 @@ nav {
     border-color: black;
     cursor: pointer;
 }
-.dashboard{
+.dashboard, .search, .supply, .crops{
     padding: 3rem;
     width:100%;
+    margin-left: 20rem;
 }
 .overview-container {
     display: flex;
@@ -160,3 +163,92 @@ hr {
   padding: 10px;
   border-top: 1px solid #ccc;
 }
+/* Responsive design */
+/* Phone view adjustments */
+@media (max-width: 480px) {
+  body {
+    overflow-x: hidden;    
+    
+  }
+
+  .side-panel {
+    width: 5rem;                 
+    padding: 10px 5px;
+    height: 100vh;            
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .side-panel a {
+    font-size: 0.75rem;
+    padding: 6px 0;
+    text-align: center;
+    font-size: 0.7rem;
+  }
+  .side-panel h2{
+    display: none;
+  }
+
+  .user-details {
+    margin-top: auto;            
+    padding: 8px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-details button {
+    width: 100%;                  
+    font-size: 0.85rem;
+    padding: 0.6rem;
+    display: block;
+  }
+
+  .dashboard, .search, .supply, .crops {
+    margin-left: 5rem;            
+    padding: 1.5rem;
+    width: calc(100% - 5rem);     
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+  }
+
+  .notif-bell {
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+  }
+
+ 
+  .overview-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* two columns */
+    grid-template-rows: auto auto;    /* two rows */
+    gap: 1rem;
+    padding: 1rem;
+    height: rem;
+  }
+
+  .overview-card {
+    margin: 0;
+    padding: 0 0.1rem 0;
+    text-align: center;
+    font-size: 0.6rem;
+  }
+
+  .summary {
+    grid-template-columns: 1fr;       /* stack summary sections */
+    gap: 1rem;
+  }
+
+  .recent-crop-card p, .supply-status-card p {
+    font-size: 0.8rem;
+    padding: 0.7rem;
+  }
+}
+
+

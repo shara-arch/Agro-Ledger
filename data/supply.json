@@ -73,46 +73,10 @@
       "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
     },
     {
-      "id": 1776550864047,
-      "name": "Urea Fertilizer",
-      "category": "Fertilizer",
-      "stock": 120,
-      "unit": "bags",
-      "minLevel": 20,
-      "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
-    },
-    {
       "id": 1776551817628,
       "name": "Urea Fertilizer",
       "category": "Fertilizer",
       "stock": 140,
-      "unit": "bags",
-      "minLevel": 20,
-      "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
-    },
-    {
-      "id": 1776552968341,
-      "name": "Urea Fertilizer",
-      "category": "Fertilizer",
-      "stock": 130,
-      "unit": "bags",
-      "minLevel": 17,
-      "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
-    },
-    {
-      "id": 1776553029211,
-      "name": "Urea Fertilizer",
-      "category": "Fertilizer",
-      "stock": 12,
-      "unit": "Kg",
-      "minLevel": 1,
-      "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
-    },
-    {
-      "id": 1776553137394,
-      "name": "Urea Fertilizer",
-      "category": "Fertilizer",
-      "stock": 130,
       "unit": "bags",
       "minLevel": 20,
       "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
