@@ -64,15 +64,6 @@
       "notes": "Organic compost"
     },
     {
-      "id": 1776550829942,
-      "name": "Urea Fertilizer",
-      "category": "Fertilizer",
-      "stock": 130,
-      "unit": "bags",
-      "minLevel": 20,
-      "notes": "Top dress at 3-4 weeks; one bag per acre recommended"
-    },
-    {
       "id": 1776551817628,
       "name": "Urea Fertilizer",
       "category": "Fertilizer",

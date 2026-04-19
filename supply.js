@@ -35,14 +35,12 @@ function renderSupply() {
       return;
     }
 
-
+    
     supply.forEach(item => {
          if (!item.name) return; // skip invalid entries
 
         const supplyStatus = item.stock > item.minLevel ? "In Stock" : "Low stock";
         const row = document.createElement("tr");
-        row.classList.add("supply-status-card");
-          //
           row.innerHTML = `
             <td>${item.name}</td>
             <td>${item.category}</td>

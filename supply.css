@@ -134,14 +134,82 @@
   margin-top: 1rem;
   border-radius: 10px;
 }
-.edit:hover,
+
  .delete:hover{
     background-color: rgb(133, 123, 123);
     cursor: pointer;
 }
-.edit, .delete {
+.delete {
     padding: 0.3rem;
     border-radius: 5px;
     border-color: white;
 }
-
+/* Responsive media */
+@media (max-width: 480px) {
+    .supply {
+        padding: 0.75rem;
+    }
+ 
+    .supply header h1 {
+        font-size: 1.2rem;
+    }
+ 
+    .supply #add-supply-btn {
+        width: 25%;
+        justify-content: center;
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+ 
+    .add-supply-Form {
+        width: 55%;
+        padding: 0.9rem;
+        border-radius: 10px;
+        font-size: 0.82rem;
+    }
+ 
+    .add-supply-container {
+        grid-template-columns:  1fr 1fr;
+        column-gap: 10%;
+    }
+ 
+    .add-supply-container input,
+    .add-supply-container select {
+        width: 100%;
+    }
+ 
+    .supplyForm {
+        justify-content: flex-start;
+    }
+ 
+    #close-form,
+    #saveSupply {
+        width: 48%;
+        text-align: center;
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+ 
+    .supply-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+ 
+    .supply-table table {
+        min-width: 540px;
+    }
+ 
+    .supply-table th,
+    .supply-table td {
+        padding: 0.35rem 0.4rem;
+        font-size: 0.75rem;
+    }
+ 
+    /* Truncate long notes on very small screens */
+    .supply-table td:nth-child(7) {
+        max-width: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
