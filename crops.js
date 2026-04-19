@@ -58,7 +58,7 @@ async function renderCrops() {
     console.error("Error found trying to renderCrops", err)
   }
 }
-document.addEventListener("DOMContentLoaded",renderCrops);
+// document.addEventListener("DOMContentLoaded",renderCrops);
 
 
 
@@ -154,4 +154,8 @@ async function deleteCrop(id) {
     alert(`Error deleting crop: ${err.message}\n\nMake sure the server is running (node server.js).`);
   }
 }
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadData();
+  renderCrops();
+});
 
