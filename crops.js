@@ -100,15 +100,23 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, type, qty, stage, harvestDate, supplies })
     });
-    
-      const newItem = await res.json();
-    alert(`${newItem.name} has been added`);
-    form.reset();  
+
+    if (!res.ok) throw new Error(`Server responded with status ${res.status}`);
+
+    const newCrop = await res.json();
+    //Update local state immediately
+    crops.push(newCrop);
+    alert(`${newCrop.name} has been added`);
+    form.reset();
+
+    // Close the <details> wrapper
+    const details = form.closest("details");
+    if (details) details.open = false;
     //refresh UI
-       renderCrops();
+    renderCrops();
   }catch (err) {
-    console.error("Save failed", err);
-    alert(`Error saving supply: ${err.message}`);
+    console.error("[crops.js]Save failed", err);
+    alert(`Error saving supply: ${err.message}\n\nMake sure the server is running (node server.js).`);
   };
 });
 });
@@ -118,26 +126,32 @@ async function deleteCrop(id) {
   const numericId = Number(id);
  
   const crop = crops.find(c => c.id === numericId);
-  if (!crop || !confirm(`Remove "${crop.name}" from the ledger?`)) return;
+  if (!crop) {
+    console.warn(`[crops.js] deleteCrop: no crop with id ${numericId} found in local state`);
+    alert("Crop not found. Please refresh the page.");
+    return;
+  }
+  
+  if (!confirm(`Remove "${crop.name}" from the ledger?`)) return;
 
   try {
     // Call backend to delete crop
-    const res = await fetch(`http://localhost:3000/api/crops/${id}`, {
+    const res = await fetch(`http://localhost:3000/api/crops/${numericId}`, {
       method: "DELETE"
     });
 
     if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
     // Update local state
-    crops = crops.filter(crop => crop.id !== id);
+    crops = crops.filter(c => c.id !== numericId);
 
     // Refresh UI
     renderCrops();
 
-    alert(`${c.name} removed.`);
+    alert(`${crop.name} removed.`);
   } catch (err) {
-    console.error("Delete failed", err);
-    alert(`Error deleting crop: ${err.message}`);
+    console.error("[crops.js]Delete failed", err);
+    alert(`Error deleting crop: ${err.message}\n\nMake sure the server is running (node server.js).`);
   }
 }
 
