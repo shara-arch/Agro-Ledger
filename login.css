@@ -1,6 +1,6 @@
 body{
     font-family: 'DM Sans', sans-serif;
-    background-color: #607B7D;
+    background-color: #3A606E;;
     display: flex;
     justify-content: center;
     position: relative;
@@ -32,7 +32,7 @@ body{
     font-weight: 700;
 }
 .loginBtn {
-    background-color: #3A606E;
+    background-color: #607B7D;
     color: aliceblue;
     padding: 0.5rem;
     display: flex;
@@ -49,6 +49,8 @@ body{
 .loginBtn:hover {
     opacity: 1.5;
     cursor: pointer;
+    background-color: #607B7D;
+    opacity: 1;
 }
 .login-hint {
     font-size: 0.8rem;
