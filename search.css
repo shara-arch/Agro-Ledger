@@ -61,6 +61,7 @@
 #daysRemainingToHarvest{
     font-size: small;
 }
+/* Responsive design */
 @media (max-width: 480px) {
  
   .search {
@@ -115,5 +116,49 @@
  
   #daysRemainingToHarvest {
     font-size: 0.72rem;
+  }
+}
+@media (max-width: 768px) {
+ 
+  .search {
+    padding: 1.2rem;
+  }
+ 
+  .search-bar-wrap {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0.5rem;
+  }
+ 
+  .search-input {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+ 
+  .search-btn {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+ 
+  .search-card {
+    padding: 0.7rem;
+  }
+ 
+  .search-results div {
+    flex-direction: column;
+    gap: 8px;
+    margin: 0.6rem 0;
+  }
+ 
+  .result-container {
+    width: 100%;
+  }
+ 
+  #itemCategory {
+    align-self: flex-start;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
   }
 }
