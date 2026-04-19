@@ -81,6 +81,12 @@ async function performSearch() {
 
 }
 //Trigger Search on Typing/checkbox change
-document.getElementById("search-input").addEventListener("input", performSearch);
-document.getElementById("filter-crops").addEventListener("change", performSearch);
-document.getElementById("filter-supplies").addEventListener("change", performSearch);
+document.addEventListener("DOMContentLoaded", () => {
+const searchInput =  document.getElementById("search-input").addEventListener("input", performSearch);
+const filterCrops =  document.getElementById("filter-crops").addEventListener("change", performSearch);
+const filterSupplies=  document.getElementById("filter-supplies").addEventListener("change", performSearch);
+
+if (searchInput)    searchInput.addEventListener("input", performSearch);
+if (filterCrops)    filterCrops.addEventListener("change", performSearch);
+if (filterSupplies) filterSupplies.addEventListener("change", performSearch);
+});
