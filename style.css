@@ -12,6 +12,8 @@ body{
     color: white;
     min-height: 100vh;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     /* position: fixed; */
 }
 .side-panel a {
@@ -19,6 +21,9 @@ body{
     color: white;
     text-decoration: none;
     padding: 10px 0;
+}
+nav {
+    flex-grow: 1;
 }
 
 /* Active link style */
@@ -143,4 +148,10 @@ header {
 }
 hr {
     text-decoration-line: none;
+}
+.user-details {
+  margin-top: auto;
+  /* margin-bottom: 0;         push to bottom */
+  padding: 10px;
+  border-top: 1px solid #ccc;
 }
