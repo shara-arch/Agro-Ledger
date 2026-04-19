@@ -76,7 +76,7 @@ app.post('/api/supply', (req, res) => {
   res.status(201).json(newSupply);
 });
 
-pp.delete('/api/supply/:id', (req, res) => {
+app.delete('/api/supply/:id', (req, res) => {
   try {
     const id   = Number(req.params.id);
     const data = loadData(supplyFile);
@@ -94,8 +94,11 @@ pp.delete('/api/supply/:id', (req, res) => {
   }
 });
 
+//Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Agro Ledger API running at http://localhost:${PORT}`);
+  console.log(`   Open http://localhost:${PORT}/index.html to view the app`);
+});
 
-app.listen(3000, () => console.log('API running on http://localhost:3000'));
 
-
-// supplies

@@ -67,15 +67,6 @@
       "cropSupplies": "Irrigation"
     },
     {
-      "id": 1776554767953,
-      "name": "Strawberries",
-      "type": "Fruit",
-      "qty": "698",
-      "stage": "Fruiting",
-      "harvestDate": "2026-04-30",
-      "cropSupplies": "Irrigation"
-    },
-    {
       "id": 1776570185925,
       "name": "Carrots",
       "type": "Vegetable",
