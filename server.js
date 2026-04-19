@@ -1,3 +1,4 @@
+//  Serves static files and provides REST API for crops/supply
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -6,6 +7,8 @@ const cors = require("cors");
 const app = express();
 app.use(express.json()); // parse JSON request bodies
 app.use(cors());
+//Serve Static files
+app.use(express.static(path.join(__dirname)));
 
 // File paths
 const cropsFile = path.join(__dirname, 'data', 'crops.json');
