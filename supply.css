@@ -18,7 +18,7 @@
 }
 .add-supply-Form{
     background-color: white;
-    width: 30%;
+    width: 45%;
     padding: 2rem;
     font-size: 1.1rem;
     border-radius: 20px;
@@ -144,6 +144,10 @@
     border-radius: 5px;
     border-color: white;
 }
+.btns{
+   display: flex;
+    justify-content: space-between;
+}
 /* Responsive media */
 @media (max-width: 480px) {
     .supply {
@@ -159,24 +163,42 @@
         justify-content: center;
         padding: 0.4rem;
         font-size: 0.8rem;
+        display: flex;
+        justify-self: start;
+        margin-bottom: 0.5rem;
     }
  
     .add-supply-Form {
-        width: 55%;
+        width: 70%;
         padding: 0.9rem;
         border-radius: 10px;
         font-size: 0.82rem;
+        margin-left: 1rem;
+    }
+    .supply-input {
+        width: 80%;
     }
  
     .add-supply-container {
-        grid-template-columns:  1fr 1fr;
-        column-gap: 10%;
+        grid-template-columns: 120px 130px 1fr 1fr;
+        column-gap: 10px;
     }
  
     .add-supply-container input,
     .add-supply-container select {
-        width: 100%;
+        width: 90%;
     }
+    #saveSupply {
+        width: 5%;
+        padding: 0;
+    }
+    .btns{
+    padding: 0;
+    width: 8rem;
+    display: flex;
+    justify-content: space-between;
+    }
+    
  
     .supplyForm {
         justify-content: flex-start;
@@ -196,7 +218,7 @@
     }
  
     .supply-table table {
-        min-width: 540px;
+        max-width: 540px;
     }
  
     .supply-table th,
