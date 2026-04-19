@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const name = document.getElementById("cropName").value.trim(); //.trim() removes white space
   const type = document.getElementById("cropType").value;
-  const qty = document.getElementById("cropQuantity").value.trim();
+  const qty = Number(document.getElementById("cropQuantity").value.trim());
   const stage = document.getElementById("growthStage").value;
   const harvestDate = document.getElementById("expectedHarvestDate").value;
   const cropSupplies = document.getElementById("cropSupplies").value.trim();
