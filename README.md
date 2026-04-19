@@ -30,7 +30,7 @@
 
 ---
 ## Link to Live Site:
-https://shara-arch.github.io/Agro-Ledger/
+- https://shara-arch.github.io/Agro-Ledger/
 ---
 ## 🌱 Project Description
 
