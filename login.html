@@ -12,12 +12,14 @@
         <h1>👩🏾‍🌾Agro Ledger</h1>
         <p>Smart Inventory for Smart Farmers</p>
         </header>
-        <form class="login-form">   
+        <div id="login-error" class="login-error hidden"></div>
+        
+        <form class="login-form" onsubmit="login(); return false">   
             <label for="username">Username</label><br>
-            <input type="text" id="username" placeholder="farmer_loise" autocomplete="username"/><br><br>
+            <input type="text" id="username" placeholder="farmer_loise" autocomplete="username" required/><br><br>
             <label for="password">Password</label><br>
-            <input  type="password" id="password" placeholder="Ahgra&9361" autocomplete="password"/><br><br>
-            <button class="loginBtn" id="login-btn" onclick="login()">Sign In to Farm</button>
+            <input  type="password" id="password" placeholder="Ahgra&9361" autocomplete="current-password" required/><br><br>
+            <button class="loginBtn" id="login-btn" type="submit">Sign In to Farm</button>
             <p class="login-hint">Username: "farmer_shara" Pass: "iLoveFarming" </p>
         </form>
 
