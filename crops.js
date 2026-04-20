@@ -45,22 +45,6 @@ function logOut() {
     }
 }
 
-//Load data
-async function loadData() {
-    try{
-    const cropsRes = await fetch(cropsFile);
-    const cropsData = await cropsRes.json();
- 
-    crops = cropsData.crops || [];
-
-    
-    return { crops, };
-}catch (err){
-     console.error("[crops.js]Error loading data", err);
-     crops = [];
-     return { crops: [] }; // fallback
-}
-}
 //renderCrops
 async function renderCrops() {
     try {
@@ -99,20 +83,16 @@ async function renderCrops() {
   }
 }
 // document.addEventListener("DOMContentLoaded",renderCrops);
-
-
-
-// Load data and render initially
-loadData()
-  .then(() => {
-    renderCrops();
-  })
-  .catch(err => {
-    console.error("Error initializing data", err);
-  });
+//----ADD CROP-----------
 
 //This is a function that adds items to the array crops
 document.addEventListener("DOMContentLoaded", () => {
+  guardPage();
+  //Seed Once then load to memory
+  await seedIfNeeded();
+  crops = getCrops();
+  renderCrops();
+  
   const form = document.getElementById("add-crop-Form");
   if (!form) {
     console.error("[crops,js]Form #add-crop-Form not found");
