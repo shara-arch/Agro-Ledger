@@ -44,7 +44,10 @@ function showLoginError(msg) {
     el.textContent = msg;
     el.classList.remove("hidden");
 }
-
+function clearLoginError() {
+    const el = document.getElementById("login-error");
+    if (el) el.classList.add("hidden");
+}
 
 //initialize login
 window.login = handleLogin(4, "farmer_shara", "iLoveFarming");
