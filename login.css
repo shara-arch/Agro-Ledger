@@ -56,4 +56,14 @@ body{
     font-size: 0.8rem;
     color: rgb(66, 65, 65);
 }
-
+.login-error {
+    background-color: #fde8e8;
+    color: #b85450;
+    border-left: 3px solid #b85450;
+    border-radius: 6px;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+}
+.hidden { display: none !important; }

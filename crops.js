@@ -1,7 +1,7 @@
 //Storage Keys
 const lsLoggedIn = "isLoggedIn";
 const lsCrops = "al_crops";
-const lsSupply = "al_supply;";
+const lsSupply = "al_supply";
 const ls_seeded = "al_seeded";
 const cropsFile = "data/crops.json";
 
@@ -46,7 +46,7 @@ function logOut() {
 }
 
 //renderCrops
-async function renderCrops() {
+ function renderCrops() {
     try {
         const container = document.querySelector("#cropsTableBody");
     if (!container) {
@@ -86,9 +86,8 @@ async function renderCrops() {
 //----ADD CROP-----------
 
 //This is a function that adds items to the array crops
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   guardPage();
-  //Seed Once then load to memory
   await seedIfNeeded();
   crops = getCrops();
   renderCrops();
@@ -148,8 +147,5 @@ async function deleteCrop(id) {
     renderCrops();
     alert(`${crop.name} removed.`);
 }
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadData();
-  renderCrops();
-});
+
 
