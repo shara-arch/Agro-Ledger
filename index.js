@@ -160,8 +160,6 @@ async function displayNotif() {
         
     }
 }
-//This creates infinite recursion
-setInterval(displayNotif, 60000); //runs every 60 sec
 
 //Create global Function to fetch data
 async function displayRecentCrops() {
@@ -192,8 +190,7 @@ async function displayRecentCrops() {
     console.error("Error displaying recent crops", err)
   }
 }
-// setInterval(displayRecentCrops, 60000);
-displayRecentCrops();
+
 
 //Function that displays Supply Status
 async function renderSupplyStatus() {
@@ -227,10 +224,13 @@ async function renderSupplyStatus() {
         console.error(`Error rendering Supply Status`, err);
     }
 }
-renderSupplyStatus();
 
-//Styling to switch active class
 document.addEventListener("DOMContentLoaded", () => {
+    guardPage();
+    await loadOverview;
+    await displayRecentCrops;
+    await renderSupplyStatus
+//Active nav link styling to switch to active class
   const links = document.querySelectorAll(".side-panel a");
 
   links.forEach(link => {
