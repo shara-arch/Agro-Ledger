@@ -1,157 +1,139 @@
-//Load data 
-//File paths(used for iniitial GET Fetch)
-const supplyFile = "data/supply.json";
+// ============================================================
+//  supply.js  —  Agro Ledger
+// ============================================================
 
+// ── Storage keys (must match index.js) ───────────────────
+const LS_LOGGED_IN = "isLoggedIn";
+const LS_CROPS     = "al_crops";
+const LS_SUPPLY    = "al_supply";
+const LS_SEEDED    = "al_seeded";
+const cropsFile    = "data/crops.json";
+const supplyFile   = "data/supply.json";
+
+// ── Task 1: session guard ─────────────────────────────────
+function guardPage() {
+    if (localStorage.getItem(LS_LOGGED_IN) !== "true") {
+        window.location.href = "login.html";
+    }
+}
+
+// ── Task 2: localStorage helpers ─────────────────────────
+function getCrops()  { return JSON.parse(localStorage.getItem(LS_CROPS)  || "[]"); }
+function getSupply() { return JSON.parse(localStorage.getItem(LS_SUPPLY) || "[]"); }
+function setCrops(data)  { localStorage.setItem(LS_CROPS,  JSON.stringify(data)); }
+function setSupply(data) { localStorage.setItem(LS_SUPPLY, JSON.stringify(data)); }
+
+async function seedIfNeeded() {
+    if (localStorage.getItem(LS_SEEDED) === "true") return;
+    try {
+        const [cropsRes, supplyRes] = await Promise.all([fetch(cropsFile), fetch(supplyFile)]);
+        const cropsData  = await cropsRes.json();
+        const supplyData = await supplyRes.json();
+        setCrops(cropsData.crops   || []);
+        setSupply(supplyData.supply || []);
+        localStorage.setItem(LS_SEEDED, "true");
+    } catch (err) {
+        console.warn("[supply.js] Seed fetch failed. Starting empty.", err);
+        setCrops([]);
+        setSupply([]);
+        localStorage.setItem(LS_SEEDED, "true");
+    }
+}
+
+// ── In-memory state ───────────────────────────────────────
 let supply = [];
 
-//Load data
-async function loadData() {
-    try{
-    const supplyRes = await fetch(supplyFile);
-    const supplyData = await supplyRes.json();
-    
-    supply = supplyData.supply || [];
-    
-    return { supply };
-}catch (err){
-     console.error("(supply.js)Error loading data", err);
-     supply = [];
-     return { supply: [] }; // fallback
-}
-}
-//Function to render supply
-function renderSupply() {
-    try {
-        const container = document.querySelector("#supplyTableBody");
-    if (!container) {
-      console.error("Container #supplyTableBody not found");
-      return;
+// ── logOut ────────────────────────────────────────────────
+function logOut() {
+    if (confirm("Are you sure you want to log out?")) {
+        localStorage.removeItem(LS_LOGGED_IN);
+        window.location.href = "login.html";
     }
-// cropsList
-    container.innerHTML="";
+}
+
+// ── Render supply table ───────────────────────────────────
+function renderSupply() {
+    const container = document.querySelector("#supplyTableBody");
+    if (!container) return;
+
+    container.innerHTML = "";
 
     if (!supply || supply.length === 0) {
-      container.innerHTML = "<tr><td colspan='8' style='text-align:center;padding:1rem'>No items found. ➕ Add Supply to get started.</td></tr>";
-      return;
+        container.innerHTML = "<tr><td colspan='8' style='text-align:center;padding:1rem'>No supply found. Click ➕ Add Supply to get started.</td></tr>";
+        return;
     }
 
-    
     supply.forEach(item => {
-         if (!item.name) return; // skip invalid entries
+        if (!item.name) return;
 
-        const supplyStatus = item.stock > item.minLevel ? "In Stock" : "Low stock";
+        const stockStatus = item.stock > item.minLevel ? "In Stock" : "Low Stock";
         const row = document.createElement("tr");
-          row.innerHTML = `
+
+        // NOTE: no supply-status-card class on <tr> — that class has
+        // display:flex which breaks the table layout (all cells collapse to col 1)
+
+        row.innerHTML = `
             <td>${item.name}</td>
             <td>${item.category}</td>
             <td>${item.stock}</td>
             <td>${item.unit}</td>
             <td>${item.minLevel}</td>
-            <td class="${supplyStatus === "In Stock" ? "status-in-stock" : "status-low"}">${supplyStatus}</td>
+            <td class="${stockStatus === "In Stock" ? "status-in-stock" : "status-low"}">${stockStatus}</td>
             <td>${item.notes || ""}</td>
-            <td >
-              <button class="delete" onclick="deleteSupply(${item.id})" title="Delete Supply Item">🗑️</button>
-            </td>`;
+            <td><button class="delete" onclick="deleteSupply(${item.id})" title="Delete">🗑️</button></td>`;
         container.appendChild(row);
     });
-    } catch(err){
-        console.error(`(supply.js)Error rendering Supply Table`, err);
-    }
 }
-// document.addEventListener("DOMContentLoaded",renderSupply);
 
-// Load data and render initially
-loadData()
-  .then(() => {
-    renderSupply();
-  })
-  .catch(err => {
-    console.error("Error initializing data", err);
-  });
-
-//This is a function that adds items to the array supply
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("add-supply-Form");
-  if (!form) {
-    console.error("Form #add-supply-Form not found");
-    return;
-  }
-
-  form.addEventListener("submit", async function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("itemName").value.trim(); // trim whitespace
-    const category = document.getElementById("supplyCategory").value;
-    const stock = Number(document.getElementById("stockValue").value);
-    const unit = document.getElementById("unit").value;
-    const minLevel = Number(document.getElementById("minLevel").value);
-    const notes = document.getElementById("notes").value.trim();
-
-    if (!name || !category || Number.isNaN(stock) || !unit || Number.isNaN(minLevel) || !notes) {
-      alert("Please complete all supply fields with valid values.");
-      return;
-    }
-    try {
-    const response = await fetch("http://localhost:3000/api/supply", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, category, stock, unit, minLevel, notes })
-    });
-
-     if (!response.ok) throw new Error(`Server error: ${response.status}`);
-
-    const newItem = await response.json();
-     // Update local state immediately (no extra fetch needed)
-     supply.push(newItem);
-    alert(`${newItem.name} has been added`);
-    form.reset();
-    // Close the <details> element 
-    const details = form.closest("details")
-    if (details) details.open = false;
-    //refresh UI
-    renderSupply();
-  } catch (err) {
-    console.error("(supply.js)Save failed", err);
-    alert(`Error saving supply: ${err.message}\n\n Make sure the server is running (node server.js)`);
-  };
-});
-});
-
-//Tthis function will be used to delete crops 
-async function deleteSupply(id) {
-//Coerce to number
-  const numericId = Number(id);
-  const item = supply.find(s => s.id === numericId);
-  if (!item) {
-    console.warn(`(supply.js) deleteSupply: no item with id ${numericId} found in local state`);
-    alert("Item not found. Please refresh the page.");
-    return;
-  }
-
-  if (!confirm(`Remove "${item.name}" from the ledger?`)) return;
-
-  try {
-    // Call backend to delete supply item
-    const res = await fetch(`http://localhost:3000/api/supply/${numericId}`, {
-      method: "DELETE"
-    });
-
-    if (!res.ok) throw new Error(`Server error: ${res.status}`);
-
-    // Update local state
-    supply = supply.filter(s => s.id !== numericId);
-
-    // Refresh UI
-    renderSupply();
-
-    alert(`${s.name} removed.`);
-  } catch (err) {
-    console.error("(supply.js)Delete failed", err);
-    alert(`Error deleting supply: ${err.message} \n\nMake sure the server is running (node server.js).`);
-  }
-}
-//add event listeners
+// ── Add supply ────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
-  await loadData();
-  renderSupply();
+    guardPage();
+
+    await seedIfNeeded();
+    supply = getSupply();
+    renderSupply();
+
+    const form = document.getElementById("add-supply-Form");
+    if (!form) return;
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name     = document.getElementById("itemName").value.trim();
+        const category = document.getElementById("supplyCategory").value;
+        const stock    = Number(document.getElementById("stockValue").value);
+        const unit     = document.getElementById("unit").value;
+        const minLevel = Number(document.getElementById("minLevel").value);
+        const notes    = document.getElementById("notes").value.trim();
+
+        if (!name)                      { alert("Supply name is required."); return; }
+        if (isNaN(stock)  || stock < 0) { alert("Enter a valid stock quantity."); return; }
+        if (isNaN(minLevel)||minLevel<0) { alert("Enter a valid minimum level."); return; }
+
+        const newItem = { id: Date.now(), name, category, stock, unit, minLevel, notes };
+        supply.push(newItem);
+        setSupply(supply);
+
+        alert(`${newItem.name} has been added`);
+        form.reset();
+
+        const details = form.closest("details");
+        if (details) details.open = false;
+
+        renderSupply();
+    });
 });
+
+// ── Delete supply ─────────────────────────────────────────
+function deleteSupply(id) {
+    const numericId = Number(id);
+    const item = supply.find(s => s.id === numericId);
+
+    if (!item) { alert("Item not found. Try refreshing."); return; }
+    if (!confirm(`Remove "${item.name}" from the ledger?`)) return;
+
+    supply = supply.filter(s => s.id !== numericId);
+    setSupply(supply);
+    renderSupply();
+    alert(`${item.name} removed.`);
+}
