@@ -37,6 +37,13 @@ async function seedIfNeeded() {
 //In memory state
 let crops = [];
 
+//logOut
+function logOut() {
+    if (confirm("Are you sure you want to log out?")) {
+        localStorage.removeItem(lsLoggedIn);
+        window.location.href = "login.html";
+    }
+}
 
 //Load data
 async function loadData() {
