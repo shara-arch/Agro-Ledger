@@ -111,9 +111,28 @@ async function loadData() {
 }
 //---Index.html-----------------------
 //call loadOverview on page reload
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadOverview();
-});
+async function loadOverview() {
+    try {
+        const { crops, supply } = await loadData();
+ 
+        const totalCrops       = crops.length;
+        const supplyItems      = supply.length;
+        const lowStockAlerts   = supply.filter(s => s.stock < s.minLevel).length;
+        const currentDate      = new Date();
+        const upcomingHarvests = crops.filter(c => new Date(c.harvestDate) > currentDate).length;
+ 
+        document.getElementById("totalCropsValue").textContent       = totalCrops;
+        document.getElementById("supplyItemsValue").textContent      = supplyItems;
+        document.getElementById("lowStockAlertsValue").textContent   = lowStockAlerts;
+        document.getElementById("upcomingHarvestsValue").textContent = upcomingHarvests;
+        document.getElementById("notifCount").textContent            = lowStockAlerts;
+ 
+        return { crops, supply, overview: { totalCrops, supplyItems, lowStockAlerts, upcomingHarvests } };
+    } catch (err) {
+        console.error("Error loading overview data", err);
+        return { crops: [], supply: [], overview: {} };
+    }
+}
 
 async function displayNotif() {
     try {
