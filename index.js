@@ -84,6 +84,26 @@ function setCrops(data)  {
 function setSupply(data) { 
     localStorage.setItem(LS_SUPPLY, JSON.stringify(data)); 
 }
+//Seed on First Visit
+async function seedIfNeeded() {
+    if (localStorage.getItem(LS_SEEDED) === "true") return; // already seeded
+    try {
+        const [cropsRes, supplyRes] = await Promise.all([
+            fetch(cropsFile),
+            fetch(supplyFile)
+        ]);
+        const cropsData  = await cropsRes.json();
+        const supplyData = await supplyRes.json();
+        setCrops(cropsData.crops   || []);
+        setSupply(supplyData.supply || []);
+        localStorage.setItem(LS_SEEDED, "true");
+    } catch (err) {
+        console.warn("[index.js] Could not fetch seed data. Starting empty.", err);
+        setCrops([]);
+        setSupply([]);
+        localStorage.setItem(LS_SEEDED, "true");
+    }
+}
 
 //---Index.html-----------------------
 //call loadOverview on page reload
