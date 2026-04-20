@@ -1,5 +1,8 @@
-//Load data 
-//File paths
+//Storage Keys
+const lsLoggedIn = "isLoggedIn";
+const lsCrops = "al_crops";
+const lsSupply = "al_supply;";
+const ls_seeded = "al_seeded";
 const cropsFile = "data/crops.json";
 
 let crops = [];
