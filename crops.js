@@ -114,30 +114,19 @@ document.addEventListener("DOMContentLoaded", () => {
       : [];
 
   
-  try {
-    const res = await fetch("http://localhost:3000/api/crops", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, type, qty, stage, harvestDate, supplies })
-    });
-
-    if (!res.ok) throw new Error(`Server responded with status ${res.status}`);
-
-    const newCrop = await res.json();
-    //Update local state immediately
-    crops.push(newCrop);
-    alert(`${newCrop.name} has been added`);
-    form.reset();
-
-    // Close the <details> wrapper
-    const details = form.closest("details");
-    if (details) details.open = false;
-    //refresh UI
-    renderCrops();
-  }catch (err) {
-    console.error("[crops.js]Save failed", err);
-    alert(`Error saving supply: ${err.message}\n\nMake sure the server is running (node server.js).`);
-  };
+        // Create new crop and save to localStorage
+        const newCrop = { id: Date.now(), name, type, qty, stage, harvestDate, supplies };
+        crops.push(newCrop);
+        setCrops(crops);
+ 
+        alert(`${newCrop.name} has been added`);
+        form.reset();
+ 
+        // Close the <details> accordion
+        const details = form.closest("details");
+        if (details) details.open = false;
+ 
+        renderCrops();
 });
 });
 
