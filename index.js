@@ -63,11 +63,12 @@ function logOut() {
     }
 }
 //Auto-redirect if user is already logged in
-window.onload = function() {
-    if(localStorage.getItem("isLoggedIn")=== "true") {
+(function redirectIfLoggedIn() {
+    const onLoginPage = window.location.pathname.endsWith("login.html");
+    if (onLoginPage && localStorage.getItem(LS_LOGGED_IN) === "true") {
         window.location.href = "index.html"
     }
-};
+})();
 
 //Load data 
 //File paths
