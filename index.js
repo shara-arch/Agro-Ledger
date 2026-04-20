@@ -50,7 +50,7 @@ function clearLoginError() {
 }
 
 //initialize login
-window.login = handleLogin(4, "farmer_shara", "iLoveFarming");
+window.login = handleLogin(4, correctUser, correctPass);
 //Log-out Function
 function logOut() {
     const confirmLogout = confirm("Are you sure you want to log out?");
