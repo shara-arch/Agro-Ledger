@@ -70,23 +70,23 @@ function logOut() {
     }
 })();
 
-//Load data 
+
 //Helpers
 function getCrops()  { 
-    return JSON.parse(localStorage.getItem(LS_CROPS)  || "[]"); 
+    return JSON.parse(localStorage.getItem(lsCrops)  || "[]"); 
 }
 function getSupply() { 
-    return JSON.parse(localStorage.getItem(LS_SUPPLY) || "[]"); 
+    return JSON.parse(localStorage.getItem(lsSupply) || "[]"); 
 }
 function setCrops(data)  { 
-    localStorage.setItem(LS_CROPS,  JSON.stringify(data)); 
+    localStorage.setItem(lsCrops,  JSON.stringify(data)); 
 }
 function setSupply(data) { 
-    localStorage.setItem(LS_SUPPLY, JSON.stringify(data)); 
+    localStorage.setItem(lsSupply, JSON.stringify(data)); 
 }
 //Seed on First Visit
 async function seedIfNeeded() {
-    if (localStorage.getItem(LS_SEEDED) === "true") return; // already seeded
+    if (localStorage.getItem(ls_seeded) === "true") return; // already seeded
     try {
         const [cropsRes, supplyRes] = await Promise.all([
             fetch(cropsFile),
@@ -96,15 +96,19 @@ async function seedIfNeeded() {
         const supplyData = await supplyRes.json();
         setCrops(cropsData.crops   || []);
         setSupply(supplyData.supply || []);
-        localStorage.setItem(LS_SEEDED, "true");
+        localStorage.setItem(ls_seeded, "true");
     } catch (err) {
         console.warn("[index.js] Could not fetch seed data. Starting empty.", err);
         setCrops([]);
         setSupply([]);
-        localStorage.setItem(LS_SEEDED, "true");
+        localStorage.setItem(ls_seeded, "true");
     }
 }
-
+//Load Data
+async function loadData() {
+    await seedIfNeeded();
+    return { crops: getCrops(), supply: getSupply() };
+}
 //---Index.html-----------------------
 //call loadOverview on page reload
 document.addEventListener('DOMContentLoaded', async () => {
