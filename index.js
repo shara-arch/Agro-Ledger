@@ -1,12 +1,19 @@
 // Credentials
 const correctUser = "farmer_shara";
 const correctPass = "iLoveFarming";
+
+//Storage Keys
+// Note : Local Storage = ls
+const lsLoggedIn = "isLoggedIn";
+const lsCrops = "al_crops";
+const lsSupply = "al_supply;";
+const ls_seeded = "al_seeded";
 //Login function
 function handleLogin(maxAttempts, correctUser, correctPass) {  
     let attempts = 0;
 
     return function login() {
-        const userName = document.getElementById("username").value;
+        const userName = document.getElementById("username").trim();
         const password = document.getElementById("password").value;
     
     //Check if already logged in 
@@ -20,11 +27,12 @@ function handleLogin(maxAttempts, correctUser, correctPass) {
     } else {
         attempts++;
         if (attempts < maxAttempts) {
-            alert("Incorrect credentials. Attempts left:" + (maxAttempts - attempts));
+ showLoginError("Incorrect credentials. Attempts left: " + (maxAttempts - attempts));
         } else {
-            alert("Too many Attempts! Access denied.")
+            showLoginError("Too many failed attempts. Access denied.");
             //disble login button
-            document.getElementById("login-btn").disabled = true;
+            const btn = document.getElementById("login-btn");
+            if (btn) btn.disabled = true;
         }
     }
  };
