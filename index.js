@@ -136,16 +136,10 @@ async function loadOverview() {
 
 async function displayNotif() {
     try {
-    const cropsRes = await fetch(cropsFile);
-    const cropsData = await cropsRes.json();
-    const supplyRes = await fetch(supplyFile);
-    const supplyData = await supplyRes.json();
-    const crops = cropsData.crops || [];
-    const supply = supplyData.supply || [];
-
-    //DOM
+    const  { supply } = await loadData();
     const container = document.querySelector("#notifList");
     
+    if (!container) return;
 
     container.innerHTML = "";
     const lowStock = supply.filter(item => item.stock < item.minLevel);
@@ -154,16 +148,12 @@ async function displayNotif() {
         container.textContent = "✔ Stock Levels are sufficient. No new alerts at the moment.";
         return;
     }
-    //Styling to make background red/green
-    const notifPanel = document.querySelectorAll(".notif-panel");
-    //--------------------------------------------------------------------
     lowStock.forEach(item => {
         const p = document.createElement("p");
         p.textContent = `⚠️${item.name}: only ${item.stock}${item.unit} remaining.`;
         container.appendChild(p);
         
     });
-    div.classList.add("low-stock");
 
 }catch(err) {
         console.error("Error displaying notifictaions", err);
