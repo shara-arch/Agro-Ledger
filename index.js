@@ -71,65 +71,21 @@ function logOut() {
 })();
 
 //Load data 
-//File paths
-const cropsFile = "data/crops.json";
-const supplyFile = "data/supply.json";
-
-//Load data
-async function loadData() {
-    try{
-    const cropsRes = await fetch(cropsFile);
-    const cropsData = await cropsRes.json();
-    const supplyRes = await fetch(supplyFile);
-    const supplyData = await supplyRes.json();
-    const crops = cropsData.crops || [];
-    const supply = supplyData.supply || [];
-    return { crops, supply };
-        // crops: cropsData.crops,
-        // supply: supplyData.supply
-    
-}catch (err){
-     console.error("Error loading data", err);
-        return { crops: [], supply: [] }; // fallback
+//Helpers
+function getCrops()  { 
+    return JSON.parse(localStorage.getItem(LS_CROPS)  || "[]"); 
 }
+function getSupply() { 
+    return JSON.parse(localStorage.getItem(LS_SUPPLY) || "[]"); 
+}
+function setCrops(data)  { 
+    localStorage.setItem(LS_CROPS,  JSON.stringify(data)); 
+}
+function setSupply(data) { 
+    localStorage.setItem(LS_SUPPLY, JSON.stringify(data)); 
 }
 
-//Load OverView Data
-async function loadOverview () {
-    try {
-    const cropsRes = await fetch(cropsFile);
-    const cropsData = await cropsRes.json();
-    const supplyRes = await fetch(supplyFile);
-    const supplyData = await supplyRes.json();
-    const crops = cropsData.crops || [];
-    const supply = supplyData.supply || [];
-
-    //compute summary metrics for dashboard
-    const totalCrops = crops.length;
-    const supplyItems = supply.length;
-    const lowStockAlerts = supply.filter(item => item.stock < item.minLevel).length;
-    const currentDate = new Date();
-    const upcomingHarvests = crops.filter(crop => new Date(crop.harvestDate) > currentDate).length;
-
-    // Update DOM
-    document.getElementById("totalCropsValue").textContent = totalCrops;
-    document.getElementById("supplyItemsValue").textContent = supplyItems;
-    document.getElementById("lowStockAlertsValue").textContent = lowStockAlerts;
-    document.getElementById("upcomingHarvestsValue").textContent = upcomingHarvests;
-    document.getElementById("notifCount").textContent = lowStockAlerts;
-
-        
-    return {
-        crops, supply,
-        overview: { totalCrops, supplyItems, lowStockAlerts, upcomingHarvests}
-    }
-    } catch(err) {
-        console.error("Error loading overview data", err);
-        return {
-            crops: [], supply: [], overview: {}
-        };
-    }
-}
+//---Index.html-----------------------
 //call loadOverview on page reload
 document.addEventListener('DOMContentLoaded', async () => {
     await loadOverview();
