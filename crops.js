@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCrops();
 });
 });
-
+//------------Delete Crop----------------
 //Tthis function will be used to delete crops 
 async function deleteCrop(id) {
   const numericId = Number(id);
@@ -142,26 +142,11 @@ async function deleteCrop(id) {
   }
   
   if (!confirm(`Remove "${crop.name}" from the ledger?`)) return;
-
-  try {
-    // Call backend to delete crop
-    const res = await fetch(`http://localhost:3000/api/crops/${numericId}`, {
-      method: "DELETE"
-    });
-
-    if (!res.ok) throw new Error(`Server error: ${res.status}`);
-
-    // Update local state
+ 
     crops = crops.filter(c => c.id !== numericId);
-
-    // Refresh UI
+    setCrops(crops);
     renderCrops();
-
     alert(`${crop.name} removed.`);
-  } catch (err) {
-    console.error("[crops.js]Delete failed", err);
-    alert(`Error deleting crop: ${err.message}\n\nMake sure the server is running (node server.js).`);
-  }
 }
 document.addEventListener("DOMContentLoaded", async () => {
   await loadData();
