@@ -8,6 +8,11 @@ const lsLoggedIn = "isLoggedIn";
 const lsCrops = "al_crops";
 const lsSupply = "al_supply;";
 const ls_seeded = "al_seeded";
+
+//Seed File paths
+const cropsFile  = "data/crops.json";
+const supplyFile = "data/supply.json";
+
 //Login function
 function handleLogin(maxAttempts, correctUser, correctPass) {  
     let attempts = 0;

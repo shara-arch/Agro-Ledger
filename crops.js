@@ -11,7 +11,30 @@ function guardPage(){
         window.location.href = "login.html";
     }
 }
-
+// Local Storage Helpers
+function getCrops()  { 
+    return JSON.parse(localStorage.getItem(lsCrops)  || "[]"); 
+}
+function setCrops(data)  { 
+    localStorage.setItem(lsCrops,  JSON.stringify(data)); 
+}
+//Seed on First Visit
+async function seedIfNeeded() {
+    if (localStorage.getItem(ls_seeded) === "true") return; // already seeded
+    try {
+        const [cropsRes] = await Promise.all([
+            fetch(cropsFile),
+        ]);
+        const cropsData  = await cropsRes.json();
+        setCrops(cropsData.crops   || []);
+        localStorage.setItem(ls_seeded, "true");
+    } catch (err) {
+        console.warn("[crops.js] Could not fetch seed data. Starting empty.", err);
+        setCrops([]);
+        localStorage.setItem(ls_seeded, "true");
+    }
+}
+//In memory state
 let crops = [];
 
 
