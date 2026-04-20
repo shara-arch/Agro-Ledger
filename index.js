@@ -1,3 +1,6 @@
+// Credentials
+const correctUser = "farmer_shara";
+const correctPass = "iLoveFarming";
 //Login function
 function handleLogin(maxAttempts, correctUser, correctPass) {  
     let attempts = 0;
