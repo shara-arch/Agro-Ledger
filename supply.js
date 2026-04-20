@@ -1,57 +1,54 @@
-// ============================================================
-//  supply.js  —  Agro Ledger
-// ============================================================
+// Storage Keys
+const lsLoggedIn = "isLoggedIn";
+const lsCrops    = "al_crops";
+const lsSupply   = "al_supply";
+const ls_seeded  = "al_seeded";
+const cropsFile  = "data/crops.json";
+const supplyFile = "data/supply.json";
 
-// ── Storage keys (must match index.js) ───────────────────
-const LS_LOGGED_IN = "isLoggedIn";
-const LS_CROPS     = "al_crops";
-const LS_SUPPLY    = "al_supply";
-const LS_SEEDED    = "al_seeded";
-const cropsFile    = "data/crops.json";
-const supplyFile   = "data/supply.json";
-
-// ── Task 1: session guard ─────────────────────────────────
+// Session Guard
 function guardPage() {
-    if (localStorage.getItem(LS_LOGGED_IN) !== "true") {
+    if (localStorage.getItem(lsLoggedIn) !== "true") {
         window.location.href = "login.html";
     }
 }
 
-// ── Task 2: localStorage helpers ─────────────────────────
-function getCrops()  { return JSON.parse(localStorage.getItem(LS_CROPS)  || "[]"); }
-function getSupply() { return JSON.parse(localStorage.getItem(LS_SUPPLY) || "[]"); }
-function setCrops(data)  { localStorage.setItem(LS_CROPS,  JSON.stringify(data)); }
-function setSupply(data) { localStorage.setItem(LS_SUPPLY, JSON.stringify(data)); }
+// Local Storage Helpers
+function getCrops()  { return JSON.parse(localStorage.getItem(lsCrops)  || "[]"); }
+function getSupply() { return JSON.parse(localStorage.getItem(lsSupply) || "[]"); }
+function setCrops(data)  { localStorage.setItem(lsCrops,  JSON.stringify(data)); }
+function setSupply(data) { localStorage.setItem(lsSupply, JSON.stringify(data)); }
 
+// Seed on First Visit
 async function seedIfNeeded() {
-    if (localStorage.getItem(LS_SEEDED) === "true") return;
+    if (localStorage.getItem(ls_seeded) === "true") return;
     try {
         const [cropsRes, supplyRes] = await Promise.all([fetch(cropsFile), fetch(supplyFile)]);
         const cropsData  = await cropsRes.json();
         const supplyData = await supplyRes.json();
         setCrops(cropsData.crops   || []);
         setSupply(supplyData.supply || []);
-        localStorage.setItem(LS_SEEDED, "true");
+        localStorage.setItem(ls_seeded, "true");
     } catch (err) {
         console.warn("[supply.js] Seed fetch failed. Starting empty.", err);
         setCrops([]);
         setSupply([]);
-        localStorage.setItem(LS_SEEDED, "true");
+        localStorage.setItem(ls_seeded, "true");
     }
 }
 
-// ── In-memory state ───────────────────────────────────────
+// In-memory state
 let supply = [];
 
-// ── logOut ────────────────────────────────────────────────
+// Logout
 function logOut() {
     if (confirm("Are you sure you want to log out?")) {
-        localStorage.removeItem(LS_LOGGED_IN);
+        localStorage.removeItem(lsLoggedIn);
         window.location.href = "login.html";
     }
 }
 
-// ── Render supply table ───────────────────────────────────
+// Render Supply Table
 function renderSupply() {
     const container = document.querySelector("#supplyTableBody");
     if (!container) return;
@@ -69,9 +66,6 @@ function renderSupply() {
         const stockStatus = item.stock > item.minLevel ? "In Stock" : "Low Stock";
         const row = document.createElement("tr");
 
-        // NOTE: no supply-status-card class on <tr> — that class has
-        // display:flex which breaks the table layout (all cells collapse to col 1)
-
         row.innerHTML = `
             <td>${item.name}</td>
             <td>${item.category}</td>
@@ -85,7 +79,7 @@ function renderSupply() {
     });
 }
 
-// ── Add supply ────────────────────────────────────────────
+// Add Supply
 document.addEventListener("DOMContentLoaded", async () => {
     guardPage();
 
@@ -124,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 });
 
-// ── Delete supply ─────────────────────────────────────────
+// Delete Supply
 function deleteSupply(id) {
     const numericId = Number(id);
     const item = supply.find(s => s.id === numericId);
