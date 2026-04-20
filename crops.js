@@ -5,6 +5,13 @@ const lsSupply = "al_supply;";
 const ls_seeded = "al_seeded";
 const cropsFile = "data/crops.json";
 
+//Session Guard
+function guardPage(){
+    if (localStorage.getItem(lsLoggedIn) !== "true") {
+        window.location.href = "login.html";
+    }
+}
+
 let crops = [];
 
 
