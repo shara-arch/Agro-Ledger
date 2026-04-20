@@ -27,7 +27,7 @@ function handleLogin(maxAttempts, correctUser, correctPass) {
     } else {
         attempts++;
         if (attempts < maxAttempts) {
- showLoginError("Incorrect credentials. Attempts left: " + (maxAttempts - attempts));
+            showLoginError("Incorrect credentials. Attempts left: " + (maxAttempts - attempts));
         } else {
             showLoginError("Too many failed attempts. Access denied.");
             //disble login button
@@ -37,6 +37,15 @@ function handleLogin(maxAttempts, correctUser, correctPass) {
     }
  };
 }
+//Login Error Handling
+function showLoginError(msg) {
+    const el = document.getElementById("login-error");
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove("hidden");
+}
+
+
 //initialize login
 window.login = handleLogin(4, "farmer_shara", "iLoveFarming");
 //Log-out Function
