@@ -1,3 +1,5 @@
+// localStorage.removeItem("al_seeded");
+
 // Credentials
 const correctUser = "farmer_shara";
 const correctPass = "iLoveFarming";

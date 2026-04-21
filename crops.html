@@ -39,7 +39,7 @@
         <summary id="add-crop-btn">➕ Add Crop</summary>
         <div class="cropForm">
             <form class="add-crop-Form" id="add-crop-Form">
-                 <button class="cancel" id="top-cancel-btn" onclick="this.parentElement.style.display='none'">&times;</button>
+                 <button class="cancel" id="top-cancel-btn" onclick="this.closest('details').open = false">&times;</button>
                     <h2>Add Crop</h2>
                     <label>Crop Name</label><br>
                     <input type="text" id="cropName" class="crop-input" placeholder="e.g. Maize" required/><br><br>
@@ -79,7 +79,7 @@
                     <label>Linked Supplies(optional)</label><br>
                     <input id="cropSupplies" class="crop-input" type="text" placeholder="e.g. NPK Fertilizer, Irrigation"/><br><br>
                     <div class="btns">
-                    <button class="cancel" id="close-form" onclick="this.parentElement.style.display='none'">Cancel</button>
+                    <button class="cancel" id="close-form" onclick="this.closest('details').open = false">Cancel</button>
                     <button id="saveCrop"  type="submit">Save Crop</button></div>
             </form>
         </div>
